@@ -30,15 +30,15 @@ class DataInput {
 		int mWidth;
 		int mHeight;
 		int mNbElements;
+		int mNbClasses;
 		std::string mPath;
 
 	public:
-		explicit DataInput(int width, int height) :	mWidth(width), mHeight(height) {
-			//mElements(mWidth * mHeight);
+		explicit DataInput(int nbClasses, int width, int height)
+			: mNbClasses(nbClasses), mWidth(width), mHeight(height) {
 		}
 
 		virtual ~DataInput() {
-			//delete &mElements;
 		}
 
 		/* Load the files in the given directory */

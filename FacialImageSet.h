@@ -14,7 +14,8 @@
 class FacialImageSet : public DataInput {
 
 	public:
-		FacialImageSet(int width, int height) : DataInput(width, height) {}
+		FacialImageSet(int nbClasses, int width, int height)
+			: DataInput(nbClasses, width, height) {}
 };
 
 #endif /* !FACIALIMAGESET_H */
