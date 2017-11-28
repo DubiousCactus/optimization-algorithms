@@ -10,11 +10,13 @@
 
 Algorithm::Algorithm() {
 	/* Load input data */
+	input_data = new DataInput();
 	/* Load GUI if doing visualization */
 }
 
 Algorithm::~Algorithm() {
 	/* Unload and destroy stuff */
+	delete input_data;
 }
 
 void Algorithm::nearestClassCentroid() {

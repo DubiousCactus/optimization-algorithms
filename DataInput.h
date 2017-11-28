@@ -10,8 +10,7 @@
 #ifndef DATA_INPUT_H
 #define DATA_INPUT_H
 
-#include <stdio>
-#include <stdlib>
+#include <iostream>
 
 
 class DataInput {
@@ -26,6 +25,6 @@ public:
 	~DataInput();
 
 	bool loadDirectory(std::string dir); /* Load the files in the given directory */
-}
+};
 
 #endif

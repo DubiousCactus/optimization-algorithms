@@ -1,14 +1,14 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include <stdio>
-#include <stdlib>
+#include <iostream>
+#include "DataInput.h"
 
 class Algorithm {
 
 private:
 
-	private DataInput input_data;
+	DataInput *input_data;
 
 public:
 
@@ -18,6 +18,6 @@ public:
 	void nearestClassCentroid();
 	void subClassCentroid();
 	void nearestNeighbor();
-}
+};
 
 #endif
