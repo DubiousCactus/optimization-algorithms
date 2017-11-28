@@ -11,15 +11,15 @@
 #ifndef DATA_INPUT_H
 #define DATA_INPUT_H
 
-#include <iostream>
-#include "Matrix.h"
+#include <vector>
+#include "Eigen/Core"
 
 
 class DataInput {
 
 	public:
 		typedef struct {
-			Matrix data;
+			Eigen::VectorXf data;
 			int label;
 		} Element;
 
@@ -47,7 +47,7 @@ class DataInput {
 		virtual std::vector<Element> getTestingElements() = 0;
 		virtual int getNbClasses() = 0;
 		/* Return the value of the class for the given class number */
-		virtual int getClassValue(int index) = 0;
+		virtual int getClass(int index) = 0;
 };
 
 #endif
