@@ -9,10 +9,14 @@
 #define HANDWRITTENNUMBERS_H
 
 #include <iostream>
+#include <cstdint>
 #include "DataInput.h"
 
 
 class HandWrittenNumbers : public DataInput {
+
+	private:
+		Eigen::VectorXf vectorise(std::vector<int8_t> pixels);
 
 	public:
 		HandWrittenNumbers(int nbClasses, int width, int height)
