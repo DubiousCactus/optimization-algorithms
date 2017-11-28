@@ -3,3 +3,4 @@ MNIST/
 *.swo
 *.swp
 *~
+*.o

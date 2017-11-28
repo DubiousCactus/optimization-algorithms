@@ -1,0 +1,13 @@
+[
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-o",
+            "Algorithm.o",
+            "Algorithm.cpp"
+        ],
+        "directory": "/home/transpalette/Code/Optimization_Project",
+        "file": "Algorithm.cpp"
+    }
+]

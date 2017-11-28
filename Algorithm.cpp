@@ -8,9 +8,15 @@
 #include "Algorithm.h"
 
 
-Algorithm::Algorithm() {
+Algorithm::Algorithm(HandWrittenNumbers *data) {
 	/* Load input data */
-	input_data = new DataInput();
+	input_data = data;
+	/* Load GUI if doing visualization */
+}
+
+Algorithm::Algorithm(FacialImageSet *data) {
+	/* Load input data */
+	input_data = data;
 	/* Load GUI if doing visualization */
 }
 

@@ -25,14 +25,22 @@ class DataInput {
 
 	private:
 		/* Might hold a vector of matrices or smthng */
-		std::vector<Element> elements;
-		int width;
-		int height;
+		std::vector<Element> mElements;
+		int mWidth;
+		int mHeight;
 
 	public:
+		explicit DataInput(int width, int height) :	mWidth(width), mHeight(height) {
+			//mElements(mWidth * mHeight);
+		}
+
+		~DataInput() {
+			delete &mElements;
+		}
+
 		/* Load the files in the given directory */
 		virtual bool loadDirectory(std::string path) = 0;
-		virtual std::vector getElements() = 0;
+		virtual std::vector<Element> getElements() = 0;
 };
 
 #endif

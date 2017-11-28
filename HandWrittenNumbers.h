@@ -14,6 +14,8 @@
 
 class HandWrittenNumbers : public DataInput {
 
-}
+	public:
+		HandWrittenNumbers(int width, int height) : DataInput(width, height) {}
+};
 
 #endif /* !HANDWRITTENNUMBERS_H */

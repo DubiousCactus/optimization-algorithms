@@ -8,8 +8,9 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include <iostream>
 #include "DataInput.h"
+#include "HandWrittenNumbers.h"
+#include "FacialImageSet.h"
 
 class Algorithm {
 
@@ -18,7 +19,8 @@ class Algorithm {
 		DataInput *pca_data; /* 2D data after applying PCA */
 
 	public:
-		Algorithm();
+		Algorithm(HandWrittenNumbers *data);
+		Algorithm(FacialImageSet *data);
 		~Algorithm();
 
 		void applyPCA(); /* Generate 2D data based on the input_data */
