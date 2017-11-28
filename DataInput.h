@@ -12,19 +12,26 @@
 #define DATA_INPUT_H
 
 #include <iostream>
+#include "Matrix.h"
 
 
 class DataInput {
 
+	public:
+		typedef struct {
+			Matrix data;
+			std::string label;
+		} Element;
+
 	private:
 		/* Might hold a vector of matrices or smthng */
-		std::vector<Matrix> elements;
+		std::vector<Element> elements;
 		int width;
 		int height;
 
 	public:
 		/* Load the files in the given directory */
-		virtual bool loadDirectory(std::string dir) = 0;
+		virtual bool loadDirectory(std::string path) = 0;
 		virtual std::vector getElements() = 0;
 };
 

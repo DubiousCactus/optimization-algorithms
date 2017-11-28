@@ -21,6 +21,8 @@ FacialImageSet::~FacialImageSet() {
 bool FacialImageSet::loadDirectory(std::string dir) {
 	bool success = true;
 
+	/* Implement the matlab script here ... */
+
 	return success;
 }
 

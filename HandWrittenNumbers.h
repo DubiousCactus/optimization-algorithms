@@ -1,18 +1,19 @@
 /*
- * FacialImageSet.h
+ * HandWrittenNumbers.h
  * Copyright (C) 2017 transpalette <transpalette@arch-cactus>
  *
  * Distributed under terms of the MIT license.
  */
 
-#ifndef FACIALIMAGESET_H
-#define FACIALIMAGESET_H
+#ifndef HANDWRITTENNUMBERS_H
+#define HANDWRITTENNUMBERS_H
 
 #include <iostream>
 #include "DataInput.h"
 
-class FacialImageSet : public DataInput {
+
+class HandWrittenNumbers : public DataInput {
 
 }
 
-#endif /* !FACIALIMAGESET_H */
+#endif /* !HANDWRITTENNUMBERS_H */
