@@ -4,10 +4,10 @@
             "c++",
             "-c",
             "-o",
-            "Algorithm.o",
-            "Algorithm.cpp"
+            "Main.o",
+            "Main.cpp"
         ],
         "directory": "/home/transpalette/Code/Optimization_Project",
-        "file": "Algorithm.cpp"
+        "file": "Main.cpp"
     }
 ]

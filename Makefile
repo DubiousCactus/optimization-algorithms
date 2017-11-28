@@ -3,13 +3,19 @@ CFLAGS  = -g -Wall
 
 default: main
 
-main:	Algorithm.o DataInput.o
-		$(CC) $(CFLAGS) -o OptimizationAlgorithms Algorithm.o DataInput.o
+main:	Main.o 
+		$(CC) $(CFLAGS) -o OptimizationAlgorithms Main.o
 
-algorithm:	Algorithm.cpp Algorithm.h DataInput.h
+algorithm:	Algorithm.cpp Algorithm.h HandWrittenNumbers.h FacialPictures.h
 			$(CC) $(CFLAGS) -c Algorithm.cpp
 
-datainput:	DataInput.cpp DataInput.h
-			$(CC) $(CFLAGS) -c DataInput.cpp
+handwrittennumbers:	HandWrittenNumbers.cpp HandWrittenNumbers.h DataInput.h
+					$(CC) $(CFLAGS) -c HandWrittenNumbers.cpp
+
+facialpictures:	FacialPictures.cpp FacialPictures.h DataInput.h
+				$(CC) $(CFLAGS) -c FacialPictures.cpp
+
+datainput:	DataInput.h Matrix.h
+			$(CC) $(CFLAGS) -c DataInput.h
 
 clean:	$(RM) count *.o *~
