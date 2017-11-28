@@ -20,7 +20,7 @@ class DataInput {
 	public:
 		typedef struct {
 			Matrix data;
-			std::string label;
+			int label;
 		} Element;
 
 	private:
@@ -43,7 +43,11 @@ class DataInput {
 
 		/* Load the files in the given directory */
 		virtual bool loadDirectory(std::string path) = 0;
-		virtual std::vector<Element> getElements() = 0;
+		virtual std::vector<Element> getTrainingElements() = 0;
+		virtual std::vector<Element> getTestingElements() = 0;
+		virtual int getNbClasses() = 0;
+		/* Return the value of the class for the given class number */
+		virtual int getClassValue(int index) = 0;
 };
 
 #endif

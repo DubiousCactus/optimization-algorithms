@@ -9,15 +9,11 @@
 
 
 Algorithm::Algorithm(HandWrittenNumbers *data) {
-	/* Load input data */
 	input_data = data;
-	/* Load GUI if doing visualization */
 }
 
 Algorithm::Algorithm(FacialImageSet *data) {
-	/* Load input data */
 	input_data = data;
-	/* Load GUI if doing visualization */
 }
 
 Algorithm::~Algorithm() {
@@ -26,6 +22,24 @@ Algorithm::~Algorithm() {
 }
 
 void Algorithm::nearestClassCentroid() {
-	/* Act on the loaded data */
+	/* Training part: construct the mean vector of each class */
+	std::vector<double> mean_class_vectors(input_data->getNbClasses());
+
+	for (int i = 0; i < input_data->getNbClasses(); i++) {
+		/* Get class at index i: if class 0 is equal to "Blue", returns "Blue" */
+		auto currentClass = input_data->getClassValue(i);
+		std::vector<DataInput::Element>::iterator it;
+		std::vector<DataInput::Element> training_data = input_data->getTrainingElements();
+
+		for (auto const& it : training_data) {
+			/* Make sure we're updating the proper mean class vector */
+			if (it.label == currentClass) {
+				//mean_class_vectors.at(i) += it.data; //To be fixed, maybe average the data matrix ?
+			}
+		}
+
+		/* Calculate the average of the mean vector */
+		mean_class_vectors.at(i) *= 1 / input_data->getNbClasses();
+	}
 
 }
