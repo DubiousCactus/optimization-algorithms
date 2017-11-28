@@ -16,6 +16,10 @@ bool FacialImageSet::loadDirectory(std::string path) {
 	return success;
 }
 
-std::vector FacialImageSet::getElements() {
-	return elements;
+std::vector<DataInput::Element> FacialImageSet::getTrainingElements() {
+	return this->mTrainingElements;
+}
+
+std::vector<DataInput::Element> FacialImageSet::getTestingElements() {
+	return this->mTestingElements;
 }

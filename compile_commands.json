@@ -1,13 +1,1 @@
-[
-    {
-        "arguments": [
-            "c++",
-            "-c",
-            "-o",
-            "Main.o",
-            "Main.cpp"
-        ],
-        "directory": "/home/transpalette/Code/Optimization_Project",
-        "file": "Main.cpp"
-    }
-]
+[]

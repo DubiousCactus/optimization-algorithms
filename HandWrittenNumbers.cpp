@@ -11,13 +11,13 @@
 
 bool HandWrittenNumbers::loadDirectory(std::string path) {
 	bool success = true;
-	auto data_set = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(mPath);
-	mTrainingElements data_set.training_images;
+	auto data_set = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(this->mPath);
+	//this->mTrainingElements = data_set.training_images;
 
 		
 	return success;
 }
 
 int HandWrittenNumbers::getNbClasses() {
-	return mNbClasses;
+	return this->mNbClasses;
 }

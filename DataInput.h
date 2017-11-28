@@ -23,7 +23,7 @@ class DataInput {
 			int label;
 		} Element;
 
-	private:
+	protected:
 		/* Might hold a vector of matrices or smthng */
 		std::vector<Element> mTrainingElements;
 		std::vector<Element> mTestingElements;

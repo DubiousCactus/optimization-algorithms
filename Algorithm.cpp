@@ -58,7 +58,7 @@ void Algorithm::nearestClassCentroid() {
 		}
 
 		/* Classify the element by setting its label to the best match */
-		(*it)->label = input_data->getClass(optimumClass);
+		//(*it)->label = input_data->getClass(optimumClass);
 	}
 
 }
