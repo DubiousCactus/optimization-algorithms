@@ -4,7 +4,8 @@
  *
  * Distributed under terms of the MIT license.
  *
- * This class holds a bunch of images
+ * This abstract class holds a bunch of images, and is to be
+ * implemented by specific data types such as MNIST or ORL.
  */
 
 #ifndef DATA_INPUT_H
@@ -15,16 +16,16 @@
 
 class DataInput {
 
-private:
+	private:
+		/* Might hold a vector of matrices or smthng */
+		std::vector<Matrix> elements;
+		int width;
+		int height;
 
-	/* A set of vectors ? */ data_set;
-
-public:
-
-	DataInput();
-	~DataInput();
-
-	bool loadDirectory(std::string dir); /* Load the files in the given directory */
+	public:
+		/* Load the files in the given directory */
+		virtual bool loadDirectory(std::string dir) = 0;
+		virtual std::vector getElements() = 0;
 };
 
 #endif
