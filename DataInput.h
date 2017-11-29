@@ -42,12 +42,13 @@ class DataInput {
 		}
 
 		/* Load the files in the given directory */
-		virtual bool loadDirectory(std::string path) = 0;
-		virtual std::vector<Element> getTrainingElements() = 0;
-		virtual std::vector<Element> getTestingElements() = 0;
-		virtual int getNbClasses() = 0;
+		virtual void loadDirectory(std::string path) = 0;
+		
+		std::vector<Element> getTrainingElements() { return mTrainingElements; }
+		std::vector<Element> getTestingElements() { return mTestingElements; }
+		int getNbClasses() { return mNbClasses; }
 		/* Return the value of the class for the given class number */
-		virtual int getClass(int index) = 0;
+		int getClass(int index) { return -1; }
 };
 
 #endif

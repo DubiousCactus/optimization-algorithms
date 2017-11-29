@@ -8,26 +8,6 @@
 #include "FacialImageSet.h"
 
 
-bool FacialImageSet::loadDirectory(std::string path) {
-	bool success = true;
-
+void FacialImageSet::loadDirectory(std::string path) {
 	/* Implement the matlab script here ... */
-
-	return success;
-}
-
-std::vector<DataInput::Element> FacialImageSet::getTrainingElements() {
-	return mTrainingElements;
-}
-
-std::vector<DataInput::Element> FacialImageSet::getTestingElements() {
-	return mTestingElements;
-}
-
-int FacialImageSet::getNbClasses() {
-	return mNbClasses;
-}
-
-int FacialImageSet::getClass(int index) {
-	return 0;
 }

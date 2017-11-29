@@ -16,12 +16,7 @@ class FacialImageSet : public DataInput {
 		FacialImageSet(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}
 		
-		bool loadDirectory(std::string path);
-		std::vector<DataInput::Element> getTrainingElements();
-		std::vector<DataInput::Element> getTestingElements();
-		int getNbClasses();
-		int getClass(int index);
-
+		void loadDirectory(std::string path);
 };
 
 #endif /* !FACIALIMAGESET_H */

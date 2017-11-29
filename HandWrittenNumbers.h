@@ -22,12 +22,7 @@ class HandWrittenNumbers : public DataInput {
 		HandWrittenNumbers(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}
 		
-		bool loadDirectory(std::string path);
-		std::vector<Element> getTrainingElements();
-		std::vector<Element> getTestingElements();
-		int getNbClasses();
-		int getClass(int index);
-
+		void loadDirectory(std::string path);
 };
 
 #endif /* !HANDWRITTENNUMBERS_H */

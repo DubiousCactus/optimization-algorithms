@@ -19,8 +19,7 @@ Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<int8_t> pixels) {
 	return image;
 }
 
-bool HandWrittenNumbers::loadDirectory(std::string path) {
-	bool success = true;
+void HandWrittenNumbers::loadDirectory(std::string path) {
 	auto data_set = mnist::read_dataset<std::vector, std::vector, int8_t, uint8_t>(path);
 	/* data_set's fields:
  	 * - std::vector<Image> training_images 
@@ -47,22 +46,5 @@ bool HandWrittenNumbers::loadDirectory(std::string path) {
 				-1
 		});
 	}
-		
-	return success;
 }
 
-std::vector<DataInput::Element> HandWrittenNumbers::getTestingElements() {
-	return mTestingElements;
-}
-
-std::vector<DataInput::Element> HandWrittenNumbers::getTrainingElements() {
-	return mTrainingElements;
-}
-
-int HandWrittenNumbers::getNbClasses() {
-	return mNbClasses;
-}
-
-int HandWrittenNumbers::getClass(int index) {
-	return 0;
-}
