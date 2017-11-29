@@ -22,11 +22,11 @@ class HandWrittenNumbers : public DataInput {
 		HandWrittenNumbers(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}
 		
-		virtual bool loadDirectory(std::string path) = 0;
-		virtual std::vector<Element> getTrainingElements() = 0;
-		virtual std::vector<Element> getTestingElements() = 0;
-		virtual int getNbClasses() = 0;
-		virtual int getClass(int index) = 0;
+		bool loadDirectory(std::string path);
+		std::vector<Element> getTrainingElements();
+		std::vector<Element> getTestingElements();
+		int getNbClasses();
+		int getClass(int index);
 
 };
 
