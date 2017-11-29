@@ -48,7 +48,8 @@ class DataInput {
 		std::vector<Element> getTestingElements() { return mTestingElements; }
 		int getNbClasses() { return mNbClasses; }
 		/* Return the value of the class for the given class number */
-		int getClass(int index) { return -1; }
+		int getClass(int index) { return index; }
+		int getVectorSize() { return mWidth * mHeight; }
 };
 
 #endif
