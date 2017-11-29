@@ -11,10 +11,12 @@
 
 /*0 to 255 for pixels */
 Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<int8_t> pixels) {
-	Eigen::Vector2f image(pixels.size());
+	Eigen::VectorXf image(pixels.size());
 
 	for (int i = 0; i < pixels.size(); i++)
 		image(i) = ((float) pixels.at(i)) / 255;
+
+	return image;
 }
 
 bool HandWrittenNumbers::loadDirectory(std::string path) {
@@ -32,18 +34,18 @@ bool HandWrittenNumbers::loadDirectory(std::string path) {
 	 *   this->mTrainingElements = data_set.training_images;
 	 * Must reshape to #pixels x #examples and convert to double and rescale to [0, 1] */
 
-	for (auto it : data_set.training_images) {
-		DataInput::Element element;
-		element.data = vectorise(it);
-		element.label = data_set.training_labels.at(&it - &data_set.training_images[0]); //Assuming that the two vectors are the same size !!
-		mTrainingElements.push_back(element);
+	for (int i = 0; i < data_set.training_images.size(); i++) {
+		mTrainingElements.push_back({
+			vectorise(data_set.training_images.at(i)),
+			data_set.training_labels.at(i)		
+		});
 	}
 
 	for (auto const& it : data_set.test_images) {
-		DataInput::Element element;
-		element.data = vectorise(it);
-		element.label = NULL;
-		mTestingElements.push_back(element);
+		mTestingElements.push_back({
+				vectorise(it),
+				-1
+		});
 	}
 		
 	return success;
