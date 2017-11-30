@@ -23,6 +23,7 @@ Algorithm::~Algorithm() {
 }
 
 void Algorithm::nearestClassCentroid() {
+	Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
 	/* Training part: construct the mean vector of each class */
 	std::vector<Eigen::VectorXf> mean_class_vectors(input_data->getNbClasses());
 
@@ -39,7 +40,9 @@ void Algorithm::nearestClassCentroid() {
 		}
 
 		/* Calculate the average of the mean vector */
-		mean_class_vectors.at(i) *= 1 / input_data->getNbClasses();
+		mean_class_vectors.at(i) = (1 / input_data->getNbClasses()) * mean_class_vectors.at(i); //TODO: Fix bug here
+
+		std::cout << mean_class_vectors.at(i).transpose().format(fmt) << std::endl;
 	}
 
 	/* Classification part: classify the element to the smallest distance between

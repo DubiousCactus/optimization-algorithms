@@ -10,7 +10,7 @@
 
 
 /*0 to 255 for pixels */
-Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<int8_t> pixels) {
+Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<uint8_t> pixels) {
 	Eigen::VectorXf image(pixels.size());
 
 	for (int i = 0; i < pixels.size(); i++)
@@ -21,7 +21,7 @@ Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<int8_t> pixels) {
 
 void HandWrittenNumbers::loadDirectory(std::string path) {
 	std::cout << "* Loading dataset..." << std::endl;
-	auto data_set = mnist::read_dataset<std::vector, std::vector, int8_t, uint8_t>(path);
+	auto data_set = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(path);
 	/* data_set's fields:
  	 * - std::vector<Image> training_images 
 	 * - std::vector<Image> testing_images
