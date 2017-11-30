@@ -24,7 +24,7 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	auto data_set = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(path);
 	/* data_set's fields:
  	 * - std::vector<Image> training_images 
-	 * - std::vector<Image> testing_images
+	 * - std::vector<Image> test_images
 	 * - std::vector<Label> training_labels
 	 * - std::vector<Label> test_labels
 	 *
@@ -44,10 +44,10 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	}
 
 	std::cout << "* Vectorizing testing images..." << std::endl;
-	for (auto const& image : data_set.test_images) {
+	for (int i = 0; i < data_set.test_images.size(); i++) {
 		mTestingElements.push_back({
-				vectorize(image),
-				-1,
+				vectorize(data_set.test_images.at(i)),
+				data_set.test_labels.at(i),
 				-1
 		});
 	}

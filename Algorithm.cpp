@@ -45,7 +45,7 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
 float Algorithm::calculateAccuracy() {
     float positives = 0;
 
-    for (auto &element : input_data->getTestingElements())
+    for (auto const &element : input_data->getTestingElements())
 	if (element.label == element.given_class)
 	    positives++;
 
@@ -83,7 +83,8 @@ void Algorithm::nearestClassCentroid() {
      * itself and each mean vector 
      */
     std::cout << "\t-> Running classification..." << std::endl;
-    for (auto &element : input_data->getTestingElements()) {
+    std::vector<DataInput::Element> &testing_elements = input_data->getTestingElements();
+    for (auto &element : testing_elements) {
 	/* Calculate the distance for each mean class vector */
 	double distance = 0, minDistance = 0;
 	int optimumClass = 0;
@@ -102,7 +103,7 @@ void Algorithm::nearestClassCentroid() {
 	element.given_class = input_data->getClass(optimumClass);
     }
 	
-    std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
+    /*std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
        << input_data->getTestingElements().at(0).given_class << std::endl;	
-    visualiseImageVector(input_data->getTestingElements().at(0).data);
+    visualiseImageVector(input_data->getTestingElements().at(0).data);*/
 }

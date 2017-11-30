@@ -46,7 +46,7 @@ class DataInput {
 		virtual void loadDirectory(std::string path) = 0;
 		
 		std::vector<Element> getTrainingElements() { return mTrainingElements; }
-		std::vector<Element> getTestingElements() { return mTestingElements; }
+		std::vector<Element> &getTestingElements() { return mTestingElements; }
 		int getNbClasses() { return mNbClasses; }
 		/* Return the value of the class for the given class number */
 		int getClass(int index) { return index; }
