@@ -13,7 +13,7 @@ int main(int argc, char  **argv) {
 	HandWrittenNumbers *hwn = new HandWrittenNumbers(10, 28, 28);
 	hwn->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
-	std::cout << std::endl << "* Running nearest class centroid..." << std::endl;
+	std::cout << std::endl << "* Running Nearest Class Centroid..." << std::endl;
 	Algorithm algo(hwn);
 	algo.nearestClassCentroid();
 

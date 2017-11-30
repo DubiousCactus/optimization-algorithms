@@ -19,7 +19,7 @@ class DataInput {
 
 	public:
 		typedef struct {
-			Eigen::VectorXf data;
+			Eigen::VectorXd data; //Vector of doubles
 			int label;
 		} Element;
 

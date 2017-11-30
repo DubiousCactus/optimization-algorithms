@@ -25,12 +25,14 @@ Algorithm::~Algorithm() {
 void Algorithm::nearestClassCentroid() {
 	Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
 	/* Training part: construct the mean vector of each class */
-	std::vector<Eigen::VectorXf> mean_class_vectors(input_data->getNbClasses());
+ 	std::vector<Eigen::VectorXd> mean_class_vectors(input_data->getNbClasses());
 
+    std::cout << "\t-> Building mean class vectors..." << std::endl;
 	for (int i = 0; i < input_data->getNbClasses(); i++) {
 		/* Get class at index i: if class 0 is equal to "Blue", returns "Blue" */
 		auto currentClass = input_data->getClass(i);
 		mean_class_vectors.at(i).resize(input_data->getVectorSize()); //Set Eigen Vector size
+        mean_class_vectors.at(i).setZero();
 		int nb_samples = 0;
 		/* Iterate through the training data, it is an iterator representing a training Element (see struct) */
 		for (auto const& element : input_data->getTrainingElements()) {
@@ -43,21 +45,20 @@ void Algorithm::nearestClassCentroid() {
 
 		/* Calculate the average of the mean vector */
 		mean_class_vectors.at(i) = mean_class_vectors.at(i) / nb_samples;
-/*
-		std::cout << mean_class_vectors.at(i).transpose().format(fmt) << std::endl;*/
 	}
 
 	/* Classification part: classify the element to the smallest distance between
  	 * itself and each mean vector 
 	 */
+    std::cout << "\t-> Running classification..." << std::endl;
 	for (auto &element : input_data->getTestingElements()) {
 		/* Calculate the distance for each mean class vector */
-		float distance, minDistance = 0;
+		double distance = 0, minDistance = 0;
 		int optimumClass = 0;
 
 		for (int i = 0; i < input_data->getNbClasses(); i++) {
-			Eigen::VectorXf diffVector(element.data - mean_class_vectors.at(i));
-			distance = pow(diffVector.norm(), 2.0f);
+			Eigen::VectorXd diffVector(element.data - mean_class_vectors.at(i));
+			distance = pow(diffVector.norm(), 2.0);
 
 			if (distance < minDistance || !minDistance) {
 				minDistance = distance;

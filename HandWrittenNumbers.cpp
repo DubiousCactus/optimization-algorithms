@@ -9,12 +9,12 @@
 #include "mnist-parser/mnist_reader.hpp"
 
 
-/*0 to 255 for pixels */
-Eigen::VectorXf HandWrittenNumbers::vectorise(std::vector<uint8_t> pixels) {
-	Eigen::VectorXf image(pixels.size());
+/* 0 to 255 for pixels */
+Eigen::VectorXd HandWrittenNumbers::vectorize(std::vector<uint8_t> pixels) {
+	Eigen::VectorXd image(pixels.size());
 
-	for (int i = 0; i < pixels.size(); i++)
-		image(i) = ((float) pixels.at(i)) / 255;
+	for (unsigned long i = 0; i < pixels.size(); i++)
+		image(i) = ((double) pixels.at(i)) / 255; //Rescale to [0,1]
 
 	return image;
 }
@@ -37,7 +37,7 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	std::cout << "* Vectorizing training images..." << std::endl;
 	for (int i = 0; i < data_set.training_images.size(); i++) {
 		mTrainingElements.push_back({
-			vectorise(data_set.training_images.at(i)),
+			vectorize(data_set.training_images.at(i)),
 			data_set.training_labels.at(i)		
 		});
 	}
@@ -45,7 +45,7 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	std::cout << "* Vectorizing testing images..." << std::endl;
 	for (auto const& image : data_set.test_images) {
 		mTestingElements.push_back({
-				vectorise(image),
+				vectorize(image),
 				-1
 		});
 	}

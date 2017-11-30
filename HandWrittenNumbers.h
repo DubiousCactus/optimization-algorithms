@@ -16,7 +16,7 @@
 class HandWrittenNumbers : public DataInput {
 
 	private:
-		Eigen::VectorXf vectorise(std::vector<uint8_t> pixels);
+		Eigen::VectorXd vectorize(std::vector<uint8_t> pixels);
 
 	public:
 		HandWrittenNumbers(int nbClasses, int width, int height)
