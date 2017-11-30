@@ -11,7 +11,7 @@ int main(int argc, char  **argv) {
 
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
-	ORLData *faces = new ORLData(40, 40, 30);
+	ORLData *faces = new ORLData(40, 30, 40);
 	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
 
 	int ch = std::cin.get();

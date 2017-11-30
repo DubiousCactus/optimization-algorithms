@@ -12,6 +12,9 @@
 
 class ORLData : public DataInput {
 
+	private:
+		void visualiseImageVector(Eigen::VectorXd image_vector);
+
 	public:
 		ORLData(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}

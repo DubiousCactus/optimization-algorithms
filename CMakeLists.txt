@@ -282,10 +282,10 @@ set(SOURCE_FILES
         Algorithm.cpp
         Algorithm.h
         DataInput.h
-        FacialImageSet.cpp
-        FacialImageSet.h
-        HandWrittenNumbers.cpp
-        HandWrittenNumbers.h
+        ORLData.cpp
+        ORLData.h
+        MNISTData.cpp
+        MNISTData.h
         Main.cpp)
 
 find_package (Threads)
