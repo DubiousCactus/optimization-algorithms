@@ -6,8 +6,10 @@
  */
 
 #include "ORLData.h"
+#include <netpbm/pam.h>
 
 
+/* Loads PGM files from the given directoy using the Netpbm library */
 void ORLData::loadDirectory(std::string path) {
-	/* Implement the matlab script here ... */
+	
 }
