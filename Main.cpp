@@ -9,6 +9,13 @@
 
 int main(int argc, char  **argv) {
 
+	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
+
+	ORLData *faces = new ORLData(40, 40, 30);
+	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+
+	int ch = std::cin.get();
+
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 	
 	MNISTData *digits = new MNISTData(10, 28, 28);

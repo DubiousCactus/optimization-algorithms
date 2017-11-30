@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-o",
+            "ORLData.o",
+            "ORLData.cpp"
+        ],
+        "directory": "/home/transpalette/Code/Optimization_Project",
+        "file": "ORLData.cpp"
+    }
+]
