@@ -11,7 +11,7 @@ int main(int argc, char  **argv) {
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 	HandWrittenNumbers *hwn = new HandWrittenNumbers(10, 28, 28);
-	hwn->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST");
+	hwn->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	std::cout << std::endl << "* Running nearest class centroid..." << std::endl;
 	Algorithm algo(hwn);

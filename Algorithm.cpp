@@ -31,18 +31,20 @@ void Algorithm::nearestClassCentroid() {
 		/* Get class at index i: if class 0 is equal to "Blue", returns "Blue" */
 		auto currentClass = input_data->getClass(i);
 		mean_class_vectors.at(i).resize(input_data->getVectorSize()); //Set Eigen Vector size
-
+		int nb_samples = 0;
 		/* Iterate through the training data, it is an iterator representing a training Element (see struct) */
 		for (auto const& element : input_data->getTrainingElements()) {
 			/* Make sure we're updating the proper mean class vector */
-			if (element.label == currentClass)
+			if (element.label == currentClass) {
+				nb_samples++;
 				mean_class_vectors.at(i) += element.data; //Add up this picture's vector
+			}
 		}
 
 		/* Calculate the average of the mean vector */
-		mean_class_vectors.at(i) = (1 / input_data->getNbClasses()) * mean_class_vectors.at(i); //TODO: Fix bug here
-
-		std::cout << mean_class_vectors.at(i).transpose().format(fmt) << std::endl;
+		mean_class_vectors.at(i) = mean_class_vectors.at(i) / nb_samples;
+/*
+		std::cout << mean_class_vectors.at(i).transpose().format(fmt) << std::endl;*/
 	}
 
 	/* Classification part: classify the element to the smallest distance between
