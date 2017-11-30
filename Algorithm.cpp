@@ -42,6 +42,18 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     image.display("Image");
 }
 
+float Algorithm::calculateAccuracy() {
+    float positives = 0;
+
+    for (auto &element : input_data->getTestingElements())
+	if (element.label == element.given_class)
+	    positives++;
+
+    positives /= input_data->getTestingElements().size();
+
+    return positives;
+}
+
 void Algorithm::nearestClassCentroid() {
     Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
     /* Training part: construct the mean vector of each class */
@@ -87,8 +99,10 @@ void Algorithm::nearestClassCentroid() {
 	}
 
 	/* Classify the element by setting its label to the best match */
-	element.label = input_data->getClass(optimumClass);
+	element.given_class = input_data->getClass(optimumClass);
     }
 	
+    std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
+       << input_data->getTestingElements().at(0).given_class << std::endl;	
     visualiseImageVector(input_data->getTestingElements().at(0).data);
 }

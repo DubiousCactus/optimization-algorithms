@@ -18,7 +18,7 @@ class Algorithm {
 		DataInput *input_data;
 		DataInput *pca_data; /* 2D data after applying PCA */
 
-        void visualiseImageVector(Eigen::VectorXd image_vector);
+		void visualiseImageVector(Eigen::VectorXd image_vector);
 
 	public:
 		Algorithm(HandWrittenNumbers *data);
@@ -30,6 +30,7 @@ class Algorithm {
 		void subClassCentroid();
 		void nearestNeighbor();
 		void visualiseData(); /* Plot the classified 2D data */
+		float calculateAccuracy();
 };
 
 #endif

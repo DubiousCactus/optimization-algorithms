@@ -38,7 +38,8 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	for (int i = 0; i < data_set.training_images.size(); i++) {
 		mTrainingElements.push_back({
 			vectorize(data_set.training_images.at(i)),
-			data_set.training_labels.at(i)		
+			data_set.training_labels.at(i),
+			-1	
 		});
 	}
 
@@ -46,6 +47,7 @@ void HandWrittenNumbers::loadDirectory(std::string path) {
 	for (auto const& image : data_set.test_images) {
 		mTestingElements.push_back({
 				vectorize(image),
+				-1,
 				-1
 		});
 	}
