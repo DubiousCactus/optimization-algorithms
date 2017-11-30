@@ -6,7 +6,6 @@
  */
 
 #include "ORLData.h"
-#include <netpbm/pam.h>
 
 
 /* Loads PGM files from the given directoy using the Netpbm library */

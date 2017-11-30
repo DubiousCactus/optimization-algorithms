@@ -22,7 +22,3 @@ This project uses the following embedded libraries:
 - [**Eigen**](http://eigen.tuxfamily.org/index.php?title=Main_Page): A C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.
 - [**mnist-parser**](https://github.com/wichtounet/mnist): A simple C++ reader for MNIST dataset
 - [**CImg**](http://cimg.eu/): A small, open-source, and modern C++ toolkit for image processing
-
-The following libraries are required, and are not included:
-
--[**lbnetpbm**](http://netpbm.sourceforge.net/doc/libnetpbm.html): A C programming library for reading, writing, and manipulating Netpbm images.
