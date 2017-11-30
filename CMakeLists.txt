@@ -288,9 +288,16 @@ set(SOURCE_FILES
         HandWrittenNumbers.h
         Main.cpp)
 
+find_package (Threads)
+find_package(X11 REQUIRED)
+
 include_directories(.)
 include_directories(Eigen)
 include_directories(Eigen/src)
 include_directories(mnist-parser)
+include_directories(${X11_INCLUDE_DIR})
 
 add_executable(Optimization_Project ${SOURCE_FILES})
+
+target_link_libraries(Optimization_Project ${X11_LIBRARIES})
+target_link_libraries (Optimization_Project ${CMAKE_THREAD_LIBS_INIT})

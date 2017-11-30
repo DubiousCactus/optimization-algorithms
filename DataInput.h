@@ -50,6 +50,8 @@ class DataInput {
 		/* Return the value of the class for the given class number */
 		int getClass(int index) { return index; }
 		int getVectorSize() { return mWidth * mHeight; }
+        int getWidth() { return mWidth; }
+        int getHeight() { return mHeight; }
 };
 
 #endif

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS  = -g -Wall -std=c++11 -lm
+CFLAGS  = -g -Wall -std=c++11 -lm -lpthread -lX11  -I/usr/X11R6/include -L/usr/X11R6/lib
 
 default: OptimizationAlgorithms
 

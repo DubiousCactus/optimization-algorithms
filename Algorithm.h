@@ -18,6 +18,8 @@ class Algorithm {
 		DataInput *input_data;
 		DataInput *pca_data; /* 2D data after applying PCA */
 
+        void visualiseImageVector(Eigen::VectorXd image_vector);
+
 	public:
 		Algorithm(HandWrittenNumbers *data);
 		Algorithm(FacialImageSet *data);
