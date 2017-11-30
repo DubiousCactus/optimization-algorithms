@@ -1,16 +1,16 @@
 /*
- * HandWrittenNumbers.cpp
+ * MNISTData.cpp
  * Copyright (C) 2017 transpalette <transpalette@arch-cactus>
  *
  * Distributed under terms of the MIT license.
  */
 
-#include "HandWrittenNumbers.h"
+#include "MNISTData.h"
 #include "mnist-parser/mnist_reader.hpp"
 
 
 /* 0 to 255 for pixels */
-Eigen::VectorXd HandWrittenNumbers::vectorize(std::vector<uint8_t> pixels) {
+Eigen::VectorXd MNISTData::vectorize(std::vector<uint8_t> pixels) {
 	Eigen::VectorXd image(pixels.size());
 
 	for (unsigned long i = 0; i < pixels.size(); i++)
@@ -19,7 +19,7 @@ Eigen::VectorXd HandWrittenNumbers::vectorize(std::vector<uint8_t> pixels) {
 	return image;
 }
 
-void HandWrittenNumbers::loadDirectory(std::string path) {
+void MNISTData::loadDirectory(std::string path) {
 	std::cout << "* Loading dataset..." << std::endl;
 	auto data_set = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(path);
 	/* data_set's fields:

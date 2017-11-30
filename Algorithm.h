@@ -9,8 +9,8 @@
 #define ALGORITHM_H
 
 #include "DataInput.h"
-#include "HandWrittenNumbers.h"
-#include "FacialImageSet.h"
+#include "MNISTData.h"
+#include "ORLData.h"
 
 class Algorithm {
 
@@ -21,8 +21,8 @@ class Algorithm {
 		void visualiseImageVector(Eigen::VectorXd image_vector);
 
 	public:
-		Algorithm(HandWrittenNumbers *data);
-		Algorithm(FacialImageSet *data);
+		Algorithm(MNISTData *data);
+		Algorithm(ORLData *data);
 		~Algorithm();
 
 		void applyPCA(); /* Generate 2D data based on the input_data */

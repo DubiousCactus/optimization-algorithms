@@ -1,5 +1,5 @@
 /*
- * HandWrittenNumbers.h
+ * MNISTData.h
  * Copyright (C) 2017 transpalette <transpalette@arch-cactus>
  *
  * Distributed under terms of the MIT license.
@@ -13,13 +13,13 @@
 #include "DataInput.h"
 
 
-class HandWrittenNumbers : public DataInput {
+class MNISTData : public DataInput {
 
 	private:
 		Eigen::VectorXd vectorize(std::vector<uint8_t> pixels);
 
 	public:
-		HandWrittenNumbers(int nbClasses, int width, int height)
+		MNISTData(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}
 		
 		void loadDirectory(std::string path);

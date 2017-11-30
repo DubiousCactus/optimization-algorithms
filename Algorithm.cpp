@@ -12,22 +12,26 @@
 using namespace cimg_library;
 
 
-Algorithm::Algorithm(HandWrittenNumbers *data) {
-	input_data = data;
+Algorithm::Algorithm(MNISTData *data) {
+    input_data = data;
 }
 
-Algorithm::Algorithm(FacialImageSet *data) {
-	input_data = data;
+Algorithm::Algorithm(ORLData *data) {
+    input_data = data;
 }
 
 Algorithm::~Algorithm() {
-	delete input_data;
+    delete input_data;
+    delete pca_data;
 }
 
 void Algorithm::visualiseData() {
 
 }
 
+/* Recompose an image matrix from a given vector, and display it on screen.
+ * NB: halts the program execution until exited
+ */
 void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     /* Build the matrix from the vector */
     int width = input_data->getWidth();

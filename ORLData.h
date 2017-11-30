@@ -1,5 +1,5 @@
 /*
- * FacialImageSet.h
+ * ORLData.h
  * Copyright (C) 2017 transpalette <transpalette@arch-cactus>
  *
  * Distributed under terms of the MIT license.
@@ -10,10 +10,10 @@
 
 #include "DataInput.h"
 
-class FacialImageSet : public DataInput {
+class ORLData : public DataInput {
 
 	public:
-		FacialImageSet(int nbClasses, int width, int height)
+		ORLData(int nbClasses, int width, int height)
 			: DataInput(nbClasses, width, height) {}
 		
 		void loadDirectory(std::string path);
