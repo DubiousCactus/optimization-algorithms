@@ -21,7 +21,7 @@ void ORLData::visualiseImageVector(Eigen::VectorXd image_vector) {
     double image_matrix[mWidth][mHeight];
 
     for (int i = 0; i < mWidth; i++) {
-        for (int j = 0; j < mHeight; j++) {
+        for (int j = 0; j < mWidth; j++) {
             image_matrix[i][j] = image_vector(j + (mHeight * i));
 	    std::cout  << "Matrix[" << i << "][" << j << "] = image_vector[" << j + (mHeight * i) << "]" << std::endl;
 	}
@@ -31,19 +31,47 @@ void ORLData::visualiseImageVector(Eigen::VectorXd image_vector) {
     image.display("Image");
 }
 
+
+/* Randomly split the given data in two sets: 70% in training set and 30% in the testing set */
+void ORLData::randomlySplitData(std::vector<DataInput::Element> data) {
+    int index = 0;
+    int from, to; 
+    int nbTraingingElementsInClass;
+
+    for (int i = 0; i < mNbClasses; i++) {
+	nbTraingingElementsInClass = 0.7 * (mNbElements / mNbClasses);
+	from = i * (mNbElements / mNbClasses);
+	to = from + (mNbElements / mNbClasses) - 1;
+
+	while (nbTraingingElementsInClass > 0) {
+	    index = rand() % (to - from + 1) + from;
+	    if (data.at(index).label != -1) {
+		mTrainingElements.push_back(data.at(index));
+		nbTraingingElementsInClass--;
+		data.at(index).label = -1;
+	    }
+	}
+	
+	/* Assing the remaining to test elements */
+	for (int j = from; j < to; j++)
+	    if (data.at(j).label != -1)
+		mTestingElements.push_back(data.at(j));
+    }
+}
+
 /* Load double values to build image vectors from text files */
 void ORLData::loadDirectory(std::string path) {
 	std::ifstream ocl_data_file, ocl_labels_file;
 	ocl_data_file.open(path + "/orl_data.txt", std::ios::in);
-	ocl_labels_file.open(path + "/train_labels_ORL.dat", std::ios::in);
+	ocl_labels_file.open(path + "/orl_lbls.txt", std::ios::in);
 
 	if (ocl_data_file.is_open() && ocl_labels_file.is_open()) {
 		/* Looks like the file contains values of 8 characters, separated by tabs */
 		char character;
 		int n, line_number = 0;
-		std::string value;
-		std::string line;
-		std::vector<Eigen::VectorXd> face_vectors(400); //400 pictures
+		std::string line, label, value;
+		std::vector<Eigen::VectorXd> face_vectors(mNbElements); //400 pictures
+		std::vector<int> face_labels(mNbElements);
 		size_t pos;
 		std::string delimiter = "\t";
 
@@ -53,6 +81,9 @@ void ORLData::loadDirectory(std::string path) {
 				 /*Split line in values, separated by tabs,
 				  and add those values to the corresponding vectors*/
 				n = 0;
+				if (std::getline(ocl_labels_file, label))
+				    face_labels.at(line_number) = std::stod(label);
+
 				while ((pos = line.find(delimiter)) != std::string::npos) {
 					if (face_vectors.at(n).size() != getVectorSize())
 						face_vectors.at(n).resize(getVectorSize());
@@ -66,35 +97,20 @@ void ORLData::loadDirectory(std::string path) {
 			}
 		}
 
-		Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
-		std::cout << "First vector (size = " << face_vectors.at(0).size() << "): " << face_vectors.at(0).format(fmt) << std::endl;
-		int c = std::cin.get();
-		visualiseImageVector(face_vectors.at(0));
+		std::vector<DataInput::Element> data;
+		for (int i = 0; i < face_vectors.size(); i++) {
+		    data.push_back({
+			    face_vectors.at(i),
+			    face_labels.at(i),
+			    -1
+		    });
+		}
 
-		/*ocl_data_file.seekg(0);
-		n = 0;
-		while (!ocl_data_file.eof()) {
-			face_vectors.at(n).resize(getVectorSize());
-			face_vectors.at(n).setZero();
-
-			[> Read vector by vector <]
-			for (int i = 0; i < getVectorSize(); i++) {
-				value = "";
-				[> Read characters until tab encountered: one double value <]
-				do {
-					ocl_data_file.get(character);
-					value += character;
-				} while (character != '\t' && !ocl_data_file.eof());
-				
-				face_vectors.at(n)(i) = std::stod(value); //Adding to vector
-			}
-
-			std::cout << face_vectors.at(0).format(fmt) << std::endl;
-			visualiseImageVector(face_vectors.at(0));
-			[> Go to next vector <]
-			n++;
-
-		}*/
+		/*Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
+		std::cout << "First vector (size = " << face_vectors.at(399).size() << ", label = " << face_labels.at(399) << "): " << face_vectors.at(399).format(fmt) << std::endl;
+    */
+		randomlySplitData(data);
+		//visualiseImageVector(face_vectors.at(0));
 	} else {
 		std::cout << "/!\\ COULD NOT OPEN FILES /!\\" << std::endl;
 		exit(1);

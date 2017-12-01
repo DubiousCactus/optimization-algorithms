@@ -9,11 +9,15 @@
 
 int main(int argc, char  **argv) {
 
+	srand((unsigned) time(NULL));
+
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
-	ORLData *faces = new ORLData(40, 30, 40);
+	ORLData *faces = new ORLData(40, 30, 40, 400);
 	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
-
+	Algorithm algoA(faces);
+	algoA.nearestClassCentroid();
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl;
 	int ch = std::cin.get();
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
