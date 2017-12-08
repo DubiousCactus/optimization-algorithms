@@ -27,7 +27,7 @@ class Algorithm {
 
 		void applyPCA(); /* Generate 2D data based on the input_data */
 		void nearestClassCentroid();
-		void subClassCentroid();
+		void nearestSubClassCentroid(int nbSubClasses);
 		void nearestNeighbor();
 		void visualiseData(); /* Plot the classified 2D data */
 		float calculateAccuracy();

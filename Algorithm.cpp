@@ -85,8 +85,7 @@ void Algorithm::nearestClassCentroid() {
 	int optimumClass = 0;
 
 	for (auto const& mean_class_vector : mean_class_vectors) {
-	    Eigen::VectorXd diffVector(element.data - mean_class_vector.second);
-	    distance = pow(diffVector.norm(), 2.0);
+	    distance = pow(Eigen::VectorXd(element.data - mean_class_vector.second).norm(), 2.0);
 
 	    if (distance < minDistance || !minDistance) {
 		minDistance = distance;
@@ -102,3 +101,33 @@ void Algorithm::nearestClassCentroid() {
        << input_data->getTestingElements().at(0).given_class << std::endl;	
     visualiseImageVector(input_data->getTestingElements().at(0).data);*/
 }
+
+void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
+    /* Training part: apply K-means on the training data to find sub classes */
+    bool iterate = true;
+    double lowestDistance = -1;
+    std::map<int, Eigen::MatrixXd> sub_classes;
+    std::map<int, Eigen::VectorXd> mean_vectors; /* class -> mean vector */
+    std::map<int, double> l; /* class -> distance */
+
+    while (iterate) {
+	for (auto const& training_class : input_data->getTrainingElements()) {
+	    for (auto const& training_element : training_class.second) {
+		lowestDistance = -1;
+		for (int i = 0; i < nbSubClasses; i++) {
+		    double distance = pow(Eigen::VectorXd(training_element.data - mean_vectors[i]).norm(), 2);
+		    if (distance < lowestDistance || lowestDistance == -1) {
+			lowestDistance = distance;
+			sub_classes[i].conservativeResize(training_element.data.size(), sub_classes[i].cols() + 1);
+			sub_classes[i].col(sub_classes[i].cols() - 1) = training_element.data;
+		    }
+		}
+	    }
+	}
+
+	/* Update mean vectors */
+	for (int i = 0; i < nbSubClasses; i++)
+	    mean_vectors[i] = sub_classes[i].mean(); //Should be the mean of all the vectors of sub class i
+    }
+}
+
