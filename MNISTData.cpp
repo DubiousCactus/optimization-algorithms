@@ -36,7 +36,7 @@ void MNISTData::loadDirectory(std::string path) {
 
 	std::cout << "* Vectorizing training images..." << std::endl;
 	for (int i = 0; i < data_set.training_images.size(); i++) {
-		mTrainingElements.push_back({
+		mTrainingElements[data_set.training_labels.at(i)].push_back({
 			vectorize(data_set.training_images.at(i)),
 			data_set.training_labels.at(i),
 			-1	

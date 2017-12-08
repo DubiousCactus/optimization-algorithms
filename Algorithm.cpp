@@ -39,8 +39,8 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     double image_matrix[width][height];
 
     for (int i = 0; i < image_vector.size() / width; i++)
-        for (int j = 0; j < height; j++)
-            image_matrix[i][j] = image_vector(j + (width * i));
+	for (int j = 0; j < height; j++)
+	    image_matrix[i][j] = image_vector(j + (width * i));
 
     CImg<double> image((const double*) image_matrix, width, height, 1, 1, true);
     image.display("Image");
@@ -59,52 +59,43 @@ float Algorithm::calculateAccuracy() {
 }
 
 void Algorithm::nearestClassCentroid() {
-    Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
     /* Training part: construct the mean vector of each class */
-    std::vector<Eigen::VectorXd> mean_class_vectors(input_data->getNbClasses());
+    std::map<int, Eigen::VectorXd> mean_class_vectors;
 
     std::cout << "\t-> Building mean class vectors..." << std::endl;
-    for (int i = 0; i < input_data->getNbClasses(); i++) {
+    for (auto const& training_class : input_data->getTrainingElements()) {
 	/* Get class at index i: if class 0 is equal to "Blue", returns "Blue" */
-	auto currentClass = input_data->getClass(i);
-	mean_class_vectors.at(i).resize(input_data->getVectorSize()); //Set Eigen Vector size
-	mean_class_vectors.at(i).setZero();
-	int nb_samples = 0;
-	/* Iterate through the training data, it is an iterator representing a training Element (see struct) */
-	for (auto const& element : input_data->getTrainingElements()) {
-	    /* Make sure we're updating the proper mean class vector */
-	    if (element.label == currentClass) {
-		nb_samples++;
-		mean_class_vectors.at(i) += element.data; //Add up this picture's vector
-	    }
-	}
+	mean_class_vectors[training_class.first].resize(input_data->getVectorSize()); //Set Eigen Vector size
+	mean_class_vectors[training_class.first].setZero();
+	/* Iterate through the training data for the current class */
+	for (auto const& element : training_class.second)
+	    mean_class_vectors.at(training_class.first) += element.data; //Add up this picture's vector
 
 	/* Calculate the average of the mean vector */
-	mean_class_vectors.at(i) = mean_class_vectors.at(i) / nb_samples;
+	mean_class_vectors.at(training_class.first) = mean_class_vectors.at(training_class.first) / training_class.second.size();
     }
 
     /* Classification part: classify the element to the smallest distance between
      * itself and each mean vector 
      */
     std::cout << "\t-> Running classification..." << std::endl;
-    std::vector<DataInput::Element> &testing_elements = input_data->getTestingElements();
-    for (auto &element : testing_elements) {
+    for (auto &element : input_data->getTestingElements()) {
 	/* Calculate the distance for each mean class vector */
 	double distance = 0, minDistance = 0;
 	int optimumClass = 0;
 
-	for (int i = 0; i < input_data->getNbClasses(); i++) {
-	    Eigen::VectorXd diffVector(element.data - mean_class_vectors.at(i));
+	for (auto const& mean_class_vector : mean_class_vectors) {
+	    Eigen::VectorXd diffVector(element.data - mean_class_vector.second);
 	    distance = pow(diffVector.norm(), 2.0);
 
 	    if (distance < minDistance || !minDistance) {
 		minDistance = distance;
-		optimumClass = i;
+		optimumClass = mean_class_vector.first;
 	    }
 	}
 
 	/* Classify the element by setting its label to the best match */
-	element.given_class = input_data->getClass(optimumClass);
+	element.given_class = optimumClass;
     }
 	
     /*std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "

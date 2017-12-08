@@ -12,6 +12,7 @@
 #define DATA_INPUT_H
 
 #include <vector>
+#include <map>
 #include "Eigen/Core"
 
 
@@ -25,8 +26,7 @@ class DataInput {
 		} Element;
 
 	protected:
-		/* Might hold a vector of matrices or smthng */
-		std::vector<Element> mTrainingElements;
+		std::map<int, std::vector<Element>> mTrainingElements;
 		std::vector<Element> mTestingElements;
 		int mWidth;
 		int mHeight;
@@ -45,11 +45,9 @@ class DataInput {
 		/* Load the files in the given directory */
 		virtual void loadDirectory(std::string path) = 0;
 		
-		std::vector<Element> getTrainingElements() { return mTrainingElements; }
+		std::map<int, std::vector<Element>> getTrainingElements() { return mTrainingElements; }
 		std::vector<Element> &getTestingElements() { return mTestingElements; }
 		int getNbClasses() { return mNbClasses; }
-		/* Return the value of the class for the given class number */
-		int getClass(int index) { return index; }
 		int getVectorSize() { return mWidth * mHeight; }
 		int getWidth() { return mWidth; }
 		int getHeight() { return mHeight; }
