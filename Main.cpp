@@ -43,6 +43,8 @@ int main(int argc, char  **argv) {
 	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
 	algo.nearestSubClassCentroid(5);
 	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	algo.nearestNeighbour();
+	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
 
 	return 0;
 }
