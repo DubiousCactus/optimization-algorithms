@@ -10,7 +10,7 @@ The different classifiers implemented are tested on two sets of data:
 The following classification algorithms are implemented:
 
 - [x] Nearest class centroid
-- [ ] Nearest sub-class centroid
+- [x] Nearest sub-class centroid
 - [ ] Nearest neighbor
 - [ ] Perceptron trained using backpropagation
 - [ ] Perceptron trained using MSE
