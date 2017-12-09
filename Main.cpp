@@ -24,6 +24,9 @@ int main(int argc, char  **argv) {
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(5);
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+	algoA.nearestNeighbour();
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+
 	int ch = std::cin.get();
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
