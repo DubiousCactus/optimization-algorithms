@@ -6,10 +6,10 @@
  */
 
 #include "Algorithm.h"
-#include <math.h>
+#include <math.h>/*
 #include "CImg.h"
 
-using namespace cimg_library;
+using namespace cimg_library;*/
 
 
 Algorithm::Algorithm(MNISTData *data) {
@@ -34,7 +34,7 @@ void Algorithm::visualiseData() {
  */
 void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     /* Build the matrix from the vector */
-    int width = input_data->getWidth();
+/*    int width = input_data->getWidth();
     int height = input_data->getHeight();
     double image_matrix[width][height];
 
@@ -43,7 +43,7 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
 	    image_matrix[i][j] = image_vector(j + (width * i));
 
     CImg<double> image((const double*) image_matrix, width, height, 1, 1, true);
-    image.display("Image");
+    image.display("Image");*/
 }
 
 float Algorithm::calculateAccuracy() {
@@ -105,29 +105,75 @@ void Algorithm::nearestClassCentroid() {
 void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate = true;
+    int iterations = 50;
     double lowestDistance = -1;
     std::map<int, Eigen::MatrixXd> sub_classes;
-    std::map<int, Eigen::VectorXd> mean_vectors; /* class -> mean vector */
-    std::map<int, double> l; /* class -> distance */
+    std::map<int, double> distances;
+    std::map<int, std::vector<Eigen::VectorXd>> mean_vectors; /* class -> mean vector */
 
-    while (iterate) {
-	for (auto const& training_class : input_data->getTrainingElements()) {
-	    for (auto const& training_element : training_class.second) {
-		lowestDistance = -1;
-		for (int i = 0; i < nbSubClasses; i++) {
-		    double distance = pow(Eigen::VectorXd(training_element.data - mean_vectors[i]).norm(), 2);
-		    if (distance < lowestDistance || lowestDistance == -1) {
-			lowestDistance = distance;
-			sub_classes[i].conservativeResize(training_element.data.size(), sub_classes[i].cols() + 1);
-			sub_classes[i].col(sub_classes[i].cols() - 1) = training_element.data;
-		    }
-		}
-	    }
-	}
 
-	/* Update mean vectors */
-	for (int i = 0; i < nbSubClasses; i++)
-	    mean_vectors[i] = sub_classes[i].mean(); //Should be the mean of all the vectors of sub class i
+    std::cout << "\t-> Building mean class vectors..." << std::endl;
+    for (auto const& training_class : input_data->getTrainingElements()) {
+        mean_vectors[training_class.first].resize(nbSubClasses);
+
+        /* Init mean vectors */
+        for (int i = 0; i < nbSubClasses; i++)
+            mean_vectors[training_class.first].at(i) = training_class.second.at(0).data;
+
+        /* Init sub classes vectors */
+        for (int i = 0; i < nbSubClasses; i++)
+            sub_classes[i].resize(input_data->getVectorSize(), 0);
+
+        /* Run K-means */
+        std::cout << "\t-> Running K-Means on class " << training_class.first << " ..." << std::endl;
+        iterations = 50;
+        while (iterations--) {
+            for (auto const &training_element : training_class.second) {
+                lowestDistance = -1;
+                for (int i = 0; i < nbSubClasses; i++) {
+                    double distance = pow(
+                            Eigen::VectorXd(training_element.data - mean_vectors[training_class.first].at(i)).norm(),
+                            2);
+                    distances[i] = distance;
+                    sub_classes[i].conservativeResize(Eigen::NoChange, sub_classes[i].cols() + 1);
+                    sub_classes[i].col(sub_classes[i].cols() - 1) = training_element.data;
+                }
+
+                for (int i = 0; i < nbSubClasses; i++) {
+
+                    if (distances[i] < lowestDistance || lowestDistance == -1) {
+                        lowestDistance = distances[i];
+                    }
+                }
+            }
+
+            /* Update mean vectors */
+            for (int i = 0; i < nbSubClasses; i++)
+                mean_vectors[training_class.first].at(
+                        i) = sub_classes[i].rowwise().mean(); //Should be the mean of all the vectors of sub class i
+        }
+    }
+
+    /* Run NCC */
+    std::cout << "\t-> Running classification..." << std::endl;
+    for (auto &element : input_data->getTestingElements()) {
+        /* Calculate the distance for each mean class vector */
+        double distance = 0, minDistance = 0;
+        int optimumClass = 0;
+
+        for (auto const& sub_class_vectors : mean_vectors) {
+            for (auto const &mean_vector : sub_class_vectors.second) {
+                distance = pow(Eigen::VectorXd(element.data - mean_vector).norm(), 2.0);
+
+                if (distance < minDistance || !minDistance) {
+                    minDistance = distance;
+                    optimumClass = sub_class_vectors.first;
+                }
+            }
+        }
+
+        /* Classify the element by setting its label to the best match */
+        element.given_class = optimumClass;
     }
 }
 
