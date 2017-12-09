@@ -104,53 +104,59 @@ void Algorithm::nearestClassCentroid() {
 
 void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     /* Training part: apply K-means on the training data to find sub classes */
-    bool iterate = true;
-    int iterations = 50;
-    double lowestDistance = -1;
+    bool iterate;
+    double lowestDistance;
+    int lowestDistanceSubClass;
     std::map<int, Eigen::MatrixXd> sub_classes;
-    std::map<int, double> distances;
     std::map<int, std::vector<Eigen::VectorXd>> mean_vectors; /* class -> mean vector */
 
+    Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
 
-    std::cout << "\t-> Building mean class vectors..." << std::endl;
+    std::cout << "\t-> Building mean class vectors (" << nbSubClasses << " subclasses)..." << std::endl;
     for (auto const& training_class : input_data->getTrainingElements()) {
         mean_vectors[training_class.first].resize(nbSubClasses);
 
         /* Init mean vectors */
         for (int i = 0; i < nbSubClasses; i++)
-            mean_vectors[training_class.first].at(i) = training_class.second.at(0).data;
+            mean_vectors[training_class.first].at(i) = training_class.second.at(i).data;
 
         /* Init sub classes vectors */
-        for (int i = 0; i < nbSubClasses; i++)
+        for (int i = 0; i < nbSubClasses; i++) {
             sub_classes[i].resize(input_data->getVectorSize(), 0);
+            sub_classes[i].setZero();
+        }
 
         /* Run K-means */
-        std::cout << "\t-> Running K-Means on class " << training_class.first << " ..." << std::endl;
-        iterations = 50;
-        while (iterations--) {
+        iterate = true;
+        while (iterate) {
             for (auto const &training_element : training_class.second) {
                 lowestDistance = -1;
+                lowestDistanceSubClass = 0;
                 for (int i = 0; i < nbSubClasses; i++) {
                     double distance = pow(
                             Eigen::VectorXd(training_element.data - mean_vectors[training_class.first].at(i)).norm(),
                             2);
-                    distances[i] = distance;
-                    sub_classes[i].conservativeResize(Eigen::NoChange, sub_classes[i].cols() + 1);
-                    sub_classes[i].col(sub_classes[i].cols() - 1) = training_element.data;
-                }
-
-                for (int i = 0; i < nbSubClasses; i++) {
-
-                    if (distances[i] < lowestDistance || lowestDistance == -1) {
-                        lowestDistance = distances[i];
+                    if (distance < lowestDistance || lowestDistance == -1) {
+                        lowestDistance = distance;
+                        lowestDistanceSubClass = i;
                     }
                 }
+                sub_classes[lowestDistanceSubClass].conservativeResize(Eigen::NoChange, sub_classes[lowestDistanceSubClass].cols() + 1);
+                sub_classes[lowestDistanceSubClass].col(sub_classes[lowestDistanceSubClass].cols() - 1) = training_element.data;
             }
+            
+            /* Check mean vectors movement: if the distance between the last iteration and this one is outside
+             * the acceptance window, then we stop iterating and consider the K-means algorithm to be done */
+            iterate = false;
+            for (int i = 0; i < nbSubClasses; i++) {
+                if (pow(
+                        Eigen::VectorXd(sub_classes[i].rowwise().mean() - mean_vectors[training_class.first].at(i)).norm(),
+                        2) > KMEANS_MAX_DISTANCE)
+                    iterate = true;
 
-            /* Update mean vectors */
-            for (int i = 0; i < nbSubClasses; i++)
-                mean_vectors[training_class.first].at(
-                        i) = sub_classes[i].rowwise().mean(); //Should be the mean of all the vectors of sub class i
+                /* Update mean vectors */
+                mean_vectors[training_class.first].at(i) = sub_classes[i].rowwise().mean();
+            }
         }
     }
 

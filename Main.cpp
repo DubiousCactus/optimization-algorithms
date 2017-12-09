@@ -17,6 +17,10 @@ int main(int argc, char  **argv) {
 	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 	Algorithm algoA(faces);
 	//algoA.nearestClassCentroid();
+	algoA.nearestSubClassCentroid(2);
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl;
+	algoA.nearestSubClassCentroid(3);
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl;
 	algoA.nearestSubClassCentroid(5);
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl;
 	int ch = std::cin.get();

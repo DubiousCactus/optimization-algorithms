@@ -12,6 +12,8 @@
 #include "MNISTData.h"
 #include "ORLData.h"
 
+#define KMEANS_MAX_DISTANCE 1 //Max distance allowed between two iterations of the same mean vector
+
 class Algorithm {
 
 	private:
