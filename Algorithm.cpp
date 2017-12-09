@@ -59,6 +59,7 @@ float Algorithm::calculateAccuracy() {
 }
 
 void Algorithm::nearestClassCentroid() {
+    std::cout << "* Running nearest class centroid" << std::endl;
     /* Training part: construct the mean vector of each class */
     std::map<int, Eigen::VectorXd> mean_class_vectors;
 
@@ -103,6 +104,7 @@ void Algorithm::nearestClassCentroid() {
 }
 
 void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
+    std::cout << "* Running nearest sub-class centroid" << std::endl;
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate;
     double lowestDistance;
