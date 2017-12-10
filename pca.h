@@ -22,13 +22,13 @@ public:
      * Compute the covariance matrix from the mean centered data matrix
      * Calculate the eigenvalues and eigenvectors for the covariance matrix
      * Normalize the eigen vectors
-     * Find out an eigenvector with the largest eigenvalue
+     * Find out two eigenvectors with the largest eigenvalues
      * 
      * @input MatrixXd D the data samples matrix.
      * 
-     * @returns VectorXd The principal component vector
+     * @returns MatrixXd The principal component matrix
      */
-    static VectorXd Compute(MatrixXd D)
+    static MatrixXd Compute(MatrixXd D)
     {
         // The matrix must be square matrix.
         assert(D.rows() == D.cols());
@@ -79,7 +79,13 @@ public:
         short index = eigenValues.size() - 1;
         VectorXd featureVector = eigenVectors.row(index);
 
-        return featureVector;
+        //return featureVector;
+		
+		/* I need a matrix of the two last (sorted) eigen vectors instead */
+		MatrixXd pca_matrix;
+		pca_matrix << eigenVectors.row(eigenValues.size() - 1), eigenVectors.row(eigenValues.size() - 2);
+
+		return pca_matrix;
     }
 };
 

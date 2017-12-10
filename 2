@@ -8,7 +8,6 @@
 #include "Algorithm.h"
 #include <math.h>
 #include <thread>
-#include "Eigen/Eigenvalues"
 /*
 #include "CImg.h"
 
@@ -49,7 +48,7 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     image.display("Image");*/
 }
 
-float Algorithm::calculateAccuracy(bool usePCA) {
+float Algorithm::calculateAccuracy() {
     float positives = 0;
 
     for (auto const &element : input_data->getTestingElements())
@@ -61,7 +60,7 @@ float Algorithm::calculateAccuracy(bool usePCA) {
     return positives;
 }
 
-void Algorithm::nearestClassCentroid(bool usePCA) {
+void Algorithm::nearestClassCentroid() {
     std::cout << "* Running nearest class centroid" << std::endl;
     /* Training part: construct the mean vector of each class */
     std::map<int, Eigen::VectorXd> mean_class_vectors;
@@ -101,14 +100,12 @@ void Algorithm::nearestClassCentroid(bool usePCA) {
 	element.given_class = optimumClass;
     }
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
-
     /*std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
        << input_data->getTestingElements().at(0).given_class << std::endl;	
     visualiseImageVector(input_data->getTestingElements().at(0).data);*/
 }
 
-void Algorithm::nearestSubClassCentroid(bool usePCA, int nbSubClasses) {
+void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     std::cout << "* Running nearest sub-class centroid" << std::endl;
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate;
@@ -188,11 +185,9 @@ void Algorithm::nearestSubClassCentroid(bool usePCA, int nbSubClasses) {
         /* Classify the element by setting its label to the best match */
         element.given_class = optimumClass;
     }
-	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
 }
 
-void Algorithm::threadedNearestNeighbour(bool usePCA) {
+void Algorithm::threadedNearestNeighbour() {
     std::cout << "* Running threaded nearest neighbour..." << std::endl;
 
     std::vector<std::thread> workers;
@@ -217,12 +212,10 @@ void Algorithm::threadedNearestNeighbour(bool usePCA) {
     {
         t.join();
     });
-	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
 }
 
 
-void Algorithm::nearestNeighbour(bool usePCA) {
+void Algorithm::nearestNeighbour() {
     std::cout << "* Running nearest neighbour..." << std::endl;
 
     for (auto &testing_element : input_data->getTestingElements()) {
@@ -238,55 +231,51 @@ void Algorithm::nearestNeighbour(bool usePCA) {
 			}
 		}
     }
-
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
 }
 
-
+/* Inspired from github.com/ogail/pca */
 void Algorithm::applyPCA() {
-	Eigen::MatrixXd D;
-	D.resize(input_data->getVectorSize(), 0);
-	int i = 0;
+	// 1. Compute the mean image
+	MatrixXd mean(1, N);
+	mean.setZero();
 
-	/* Join all training samples to one matrix */
-	for (auto const& training_class : input_data->getTrainingElements()) {
-		for (auto const &element : training_class.second) {
-			D.conservativeResize(Eigen::NoChange, D.cols() + 1);
-			D.col(D.cols() - 1) = element.data;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			mean(0, j) += D(i, j) / N;
 		}
 	}
 
-	// 1. Compute the mean image
-	training_data_mean_vector = D.rowwise().mean().transpose();
-	std::cout << training_data_mean_vector.rows() << "x" << training_data_mean_vector.cols() << std::endl;
+	training_data_mean_vector = mean;
 
 	// 2. Subtract mean image from the data set to get mean centered data vector
-	Eigen::MatrixXd centered(D.colwise() - training_data_mean_vector);
+	MatrixXd U = D;
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			U(i, j) -= mean(0, j);
+		}
+	}
 
 	// 3. Compute the covariance matrix from the mean centered data matrix
-	Eigen::MatrixXd covariance = centered * centered.transpose();
+	MatrixXd covariance = (U.transpose() * U) / (double)(N);
 
-	// 4. Calculate the eigenvalues and eigen vectors for the covariance matrix
-	Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eig(covariance);
-	Eigen::MatrixXd eigenVectors = eig.eigenvectors();
-	Eigen::VectorXd eigenValues = eig.eigenvalues();
+	// 4. Calculate the eigenvalues and eigenvectors for the covariance matrix
+	EigenSolver<MatrixXd> solver(covariance);
+	MatrixXd eigenVectors = solver.eigenvectors().real();
+	VectorXd eigenValues = solver.eigenvalues().real();
 
-	/* Make a matrix of the two last (sorted) eigen vectors */
-	Eigen::MatrixXd pca_matrix(eigenVectors.row(eigenValues.size() - 1).transpose().rows(), 2);
-	pca_matrix.col(0) = eigenVectors.row(eigenValues.size() - 1).transpose();
-	pca_matrix.col(1) = eigenVectors.row(eigenValues.size() - 2).transpose();
+	// 5. Normalize the eigen vectors
+	eigenVectors.normalize();
+
+	// 6. Sort the eigen values
+	sort(eigenValues.derived().data(), eigenValues.derived().data() + eigenValues.derived().size());
 	
-	training_data_eigen_vectors = pca_matrix;
+	/* Make a matrix of the two last (sorted) eigen vectors instead */
+	MatrixXd pca_matrix;
+	pca_matrix << eigenVectors.row(eigenValues.size() - 1), eigenVectors.row(eigenValues.size() - 2);
 
-	/* Generate PCA'd input data */
-	pca_data = input_data;
-	for (auto &training_class : pca_data->getTrainingElementsRef())
-		for (auto &training_element : training_class.second)
-			training_element.data = pca_matrix.transpose() * training_element.data;
-
-	/* Normalize testing data */
-	for (auto &testing_element : pca_data->getTestingElements()) {
-		testing_element.data = testing_element.data - training_data_mean_vector;
-		testing_element.data = pca_matrix.transpose() * testing_element.data;
-	}
 }

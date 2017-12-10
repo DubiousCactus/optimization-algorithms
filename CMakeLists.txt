@@ -288,6 +288,8 @@ set(SOURCE_FILES
         MNISTData.h
         Main.cpp)
 
+SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -march=native -ffast-math -funroll-loops -ggdb3")
+
 find_package (Threads)
 find_package(X11 REQUIRED)
 
@@ -296,6 +298,8 @@ include_directories(Eigen)
 include_directories(Eigen/src)
 include_directories(mnist-parser)
 include_directories(${X11_INCLUDE_DIR})
+
+add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
 add_executable(Optimization_Project ${SOURCE_FILES})
 

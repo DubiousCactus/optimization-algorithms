@@ -16,17 +16,14 @@ int main(int argc, char  **argv) {
 	ORLData *faces = new ORLData(40, 30, 40, 400);
 	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
 	Algorithm algoA(faces);
+	algoA.applyPCA();
+	algoA.threadedNearestNeighbour(true);
 	/*algoA.nearestClassCentroid();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(2);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(3);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(5);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;*/
-	algoA.nearestNeighbour();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
-
+	algoA.threadedNearestNeighbour(false);
+*/
 	int ch = std::cin.get();
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
@@ -36,16 +33,11 @@ int main(int argc, char  **argv) {
 
 	Algorithm algo(digits);
 	/*algo.nearestClassCentroid();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(2);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(3);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(5);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;*/
-	algo.nearestNeighbour();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
-
+	algo.nearestNeighbour(false);
+*/
 	return 0;
 }
 

@@ -30,13 +30,19 @@ class DataInput {
 		std::vector<Element> mTestingElements;
 		int mWidth;
 		int mHeight;
-		int mNbElements;
 		int mNbClasses;
-		std::string mPath;
 
 	public:
 		explicit DataInput(int nbClasses, int width, int height)
 			: mNbClasses(nbClasses), mWidth(width), mHeight(height) {
+		}
+
+		explicit DataInput(const DataInput &obj) {
+			mTrainingElements = obj.mTrainingElements;
+			mTestingElements = obj.mTestingElements;
+			mWidth = obj.mWidth;
+			mHeight = obj.mHeight;
+			mNbClasses = obj.mNbClasses;
 		}
 
 		virtual ~DataInput() {
@@ -46,6 +52,7 @@ class DataInput {
 		virtual void loadDirectory(std::string path) = 0;
 		
 		std::map<int, std::vector<Element>> getTrainingElements() { return mTrainingElements; }
+		std::map<int, std::vector<Element>> &getTrainingElementsRef() { return mTrainingElements; }
 		std::vector<Element> &getTestingElements() { return mTestingElements; }
 		int getNbClasses() { return mNbClasses; }
 		int getVectorSize() { return mWidth * mHeight; }
