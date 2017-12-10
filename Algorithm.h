@@ -31,6 +31,7 @@ class Algorithm {
 		void nearestClassCentroid();
 		void nearestSubClassCentroid(int nbSubClasses);
 		void nearestNeighbour();
+		void threadedNearestNeighbour();
 		void visualiseData(); /* Plot the classified 2D data */
 		float calculateAccuracy();
 };

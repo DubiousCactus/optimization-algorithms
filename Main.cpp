@@ -14,16 +14,16 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
 	ORLData *faces = new ORLData(40, 30, 40, 400);
-	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
+	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
 	Algorithm algoA(faces);
-	algoA.nearestClassCentroid();
+	/*algoA.nearestClassCentroid();
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(2);
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(3);
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algoA.nearestSubClassCentroid(5);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;*/
 	algoA.nearestNeighbour();
 	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 
@@ -32,19 +32,19 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 	
 	MNISTData *digits = new MNISTData(10, 28, 28);
-	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
+	digits->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
 
 	Algorithm algo(digits);
-	algo.nearestClassCentroid();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	/*algo.nearestClassCentroid();
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(2);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(3);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 	algo.nearestSubClassCentroid(5);
-	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;*/
 	algo.nearestNeighbour();
-	std::cout << std::endl << "* Done ! => Accuracy: " << algo.calculateAccuracy() * 100 << "%" << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << algoA.calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 
 	return 0;
 }

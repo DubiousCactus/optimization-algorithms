@@ -187,8 +187,8 @@ void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     }
 }
 
-void Algorithm::nearestNeighbour() {
-    std::cout << "* Running nearest neighbour..." << std::endl;
+void Algorithm::threadedNearestNeighbour() {
+    std::cout << "* Running threaded nearest neighbour..." << std::endl;
 
     std::vector<std::thread> workers;
     for (auto &testing_element : input_data->getTestingElements()) {
@@ -208,8 +208,27 @@ void Algorithm::nearestNeighbour() {
         }));
     }
 
-    std::for_each(workers.begin(), workers.end(), [](std::thread &t;) 
+    std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
     {
         t.join();
     });
+}
+
+
+void Algorithm::nearestNeighbour() {
+    std::cout << "* Running nearest neighbour..." << std::endl;
+
+    for (auto &testing_element : input_data->getTestingElements()) {
+		double lowestDistance = -1;
+		for (auto const& training_class : input_data->getTrainingElements()) {
+			for (auto  const& training_element : training_class.second) {
+				double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
+
+				if (distance < lowestDistance || lowestDistance == -1) {
+					lowestDistance = distance;
+					testing_element.given_class = training_class.first;
+				}
+			}
+		}
+    }
 }
