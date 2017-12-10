@@ -18,7 +18,7 @@ mnistdata:	MNISTData.cpp MNISTData.h DataInput.h
 orldata:	ORLData.cpp ORLData.h DataInput.h
 				$(CC) $(CFLAGS) -c ORLData.cpp
 
-datainput:	DataInput.h 
+datainput:	DataInput.h pca.h
 			$(CC) $(CFLAGS) -c DataInput.h
 
 clean:	
