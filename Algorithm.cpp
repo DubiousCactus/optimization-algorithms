@@ -78,15 +78,12 @@ void Algorithm::nearestClassCentroid() {
 	element.given_class = optimumClass;
     }
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
-
-    /*std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
-       << input_data->getTestingElements().at(0).given_class << std::endl;	
-    visualiseImageVector(input_data->getTestingElements().at(0).data);*/
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     std::cout << "* Running nearest sub-class centroid" << std::endl;
+    
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate;
     double lowestDistance;
@@ -166,33 +163,33 @@ void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
         element.given_class = optimumClass;
     }
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 void Algorithm::threadedNearestNeighbour() {
     std::cout << "* Running threaded nearest neighbour..." << std::endl;
 
     std::vector<std::thread> workers;
-	int from, to;
-	for (int i = 0; i < 4; i++) {
-        from = input_data->getTestingElements().size() / 4 * i;
-		to = from + input_data->getTestingElements().size() / 4;
-        workers.push_back(std::thread([this, from, to]() {
-			for (int i = from; i < to; i++) {
-				DataInput::Element &testing_element = input_data->getTestingElements().at(i);
-				double lowestDistance = -1;
-				for (auto const& training_class : input_data->getTrainingElements()) {
-					for (auto  const& training_element : training_class.second) {
-						double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
+    int from, to;
+    for (int i = 0; i < 4; i++) {
+    from = input_data->getTestingElements().size() / 4 * i;
+    to = from + input_data->getTestingElements().size() / 4;
+    workers.push_back(std::thread([this, from, to]() {
+	for (int i = from; i < to; i++) {
+	    DataInput::Element &testing_element = input_data->getTestingElements().at(i);
+	    double lowestDistance = -1;
+	    for (auto const& training_class : input_data->getTrainingElements()) {
+		for (auto  const& training_element : training_class.second) {
+		    double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
 
-						if (distance < lowestDistance || lowestDistance == -1) {
-							lowestDistance = distance;
-							testing_element.given_class = training_class.first;
-						}
-					}
-				}
-			}
-        }));
+		    if (distance < lowestDistance || lowestDistance == -1) {
+			lowestDistance = distance;
+			testing_element.given_class = training_class.first;
+		    }
+		}
+	    }
+	}
+    }));
     }
 
     std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
@@ -200,30 +197,30 @@ void Algorithm::threadedNearestNeighbour() {
         t.join();
     });
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 
 void Algorithm::nearestNeighbour() {
     std::cout << "* Running nearest neighbour..." << std::endl;
-	long n = 0;
+    long n = 0;
 
     for (auto &testing_element : input_data->getTestingElements()) {
-		double lowestDistance = -1;
-		for (auto const& training_class : input_data->getTrainingElements()) {
-			for (auto  const& training_element : training_class.second) {
-				double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
+	double lowestDistance = -1;
+	for (auto const& training_class : input_data->getTrainingElements()) {
+	    for (auto  const& training_element : training_class.second) {
+		double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
 
-				if (distance < lowestDistance || lowestDistance == -1) {
-					lowestDistance = distance;
-					testing_element.given_class = training_class.first;
-				}
-			}
+		if (distance < lowestDistance || lowestDistance == -1) {
+		    lowestDistance = distance;
+		    testing_element.given_class = training_class.first;
 		}
-		n++;
+	    }
+	}
+	n++;
     }
 
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 
@@ -259,7 +256,7 @@ void Algorithm::train_perceptrons_MSE(Eigen::MatrixXd &weights) {
 
     /* Get the pseudo-inverse of the transposed training data and generate weights matrix */
     Eigen::MatrixXd m(training_elements_matrix * training_elements_matrix.transpose()
-                     + 0.0001 * identity); //Make sure the matrix will be invertible
+                     + 0.001 * identity); //Make sure the matrix will be invertible
     weights = Eigen::MatrixXd(m.inverse() * training_elements_matrix) * outputVectors.transpose();
 }
 
@@ -305,10 +302,10 @@ void Algorithm::applyPCA() {
 
 	/* Join all training samples to one matrix */
 	for (auto const& training_class : input_data->getTrainingElements()) {
-		for (auto const &element : training_class.second) {
-			D.conservativeResize(Eigen::NoChange, D.cols() + 1);
-			D.col(D.cols() - 1) = element.data;
-		}
+	    for (auto const &element : training_class.second) {
+		D.conservativeResize(Eigen::NoChange, D.cols() + 1);
+		D.col(D.cols() - 1) = element.data;
+	    }
 	}
 
 	// 1. Compute the mean image
@@ -334,13 +331,13 @@ void Algorithm::applyPCA() {
 
 	/* Apply PCA */
 	for (auto &training_class : input_data->getTrainingElementsRef())
-		for (auto &training_element : training_class.second)
-			training_element.data = pca_matrix.transpose() * training_element.data;
+	    for (auto &training_element : training_class.second)
+		training_element.data = pca_matrix.transpose() * training_element.data;
 
 	/* Normalize testing data */
 	for (auto &testing_element : input_data->getTestingElements()) {
-		testing_element.data = testing_element.data - training_data_mean_vector;
-		testing_element.data = pca_matrix.transpose() * testing_element.data;
+	    testing_element.data = testing_element.data - training_data_mean_vector;
+	    testing_element.data = pca_matrix.transpose() * testing_element.data;
 	}
 
 	input_data->setWidth(1);
