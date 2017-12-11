@@ -14,7 +14,6 @@
 #include "./opennn/opennn.h"
 
 #define KMEANS_MAX_DISTANCE 1 //Max distance allowed between two iterations of the same mean vector
-#define LEARNING_RATE_MSE 0.001
 
 class Algorithm {
 
@@ -24,7 +23,8 @@ class Algorithm {
 		Eigen::MatrixXd training_data_eigen_vectors;
 
 		void visualiseImageVector(Eigen::VectorXd image_vector);
-		void train_perceptrons_MSE(Eigen::MatrixXd &outputVectors, Eigen::MatrixXd &weights);
+		void train_perceptrons_MSE(Eigen::MatrixXd &weights);
+		void classify_perceptrons_MSE(Eigen::MatrixXd weights);
 
 	public:
 		Algorithm(MNISTData *data);

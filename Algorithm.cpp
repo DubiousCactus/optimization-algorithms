@@ -249,9 +249,13 @@ void Algorithm::nearestNeighbour() {
 }
 
 
-void Algorithm::train_perceptrons_MSE(Eigen::MatrixXd &outputVectors, Eigen::MatrixXd &weights) {
-    std::cout << "\t -> Training perceptron using MSE..." << std::endl;
+void Algorithm::train_perceptrons_MSE(Eigen::MatrixXd &weights) {
+    std::cout << "\t -> Training perceptrons..." << std::endl;
+  
     /* Initialize output vectors */
+    Eigen::MatrixXd outputVectors(input_data->getNbClasses(), input_data->getNbTrainingElements());
+    outputVectors.setOnes();
+    
     for (int i = 0; i < outputVectors.cols(); i++)
 	outputVectors.col(i) *= -1;
 
@@ -275,23 +279,43 @@ void Algorithm::train_perceptrons_MSE(Eigen::MatrixXd &outputVectors, Eigen::Mat
     Eigen::MatrixXd identity(training_elements_matrix.rows(), training_elements_matrix.rows());
     identity.setIdentity();
 
-    /* Apply the thing */
-    Eigen::MatrixXd m(training_elements_matrix * training_elements_matrix.transpose()
-                     + LEARNING_RATE_MSE * identity);
-
     /* Get the pseudo-inverse of the transposed training data and generate weights matrix */
+    Eigen::MatrixXd m(training_elements_matrix * training_elements_matrix.transpose()
+                     + 0.0001 * identity); //Make sure the matrix will be invertible
     weights = Eigen::MatrixXd(m.inverse() * training_elements_matrix) * outputVectors.transpose();
+}
+
+
+void Algorithm::classify_perceptrons_MSE(Eigen::MatrixXd weights) {
+    std::cout << "\t -> Classifying..." << std::endl;
+
+    /* Build the testing elements matrix */
+    int n = 0;
+    Eigen::MatrixXd testing_elements_matrix(input_data->getVectorSize(), input_data->getTestingElements().size());
+    for (auto const &testing_element : input_data->getTestingElements())
+	testing_elements_matrix.col(n) = testing_element.data;
+
+    Eigen::MatrixXd computed_elements(weights.transpose() * testing_elements_matrix);
+    n = 0;
+    for (auto const &training_class : input_data->getTrainingElements()) {
+	for (int i = 0; i < computed_elements.cols(); i++) {
+	    if (computed_elements.row(n)(i) > 0)
+		input_data->getTestingElements().at(i).given_class = training_class.first;
+
+	}
+	n++;
+    }
 }
 
 
 void Algorithm::perceptronMSE() {
     std::cout << "* Running a neural network of perceptrons using MSE..." << std::endl;
 
-    Eigen::MatrixXd outputVectors(input_data->getNbClasses(), input_data->getNbTrainingElements());
-    outputVectors.setOnes();
     Eigen::MatrixXd weights;
+    train_perceptrons_MSE(weights);
+    classify_perceptrons_MSE(weights);
 
-    train_perceptrons_MSE(outputVectors, weights);
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 void Algorithm::applyPCA() {
