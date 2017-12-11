@@ -288,7 +288,7 @@ set(SOURCE_FILES
         MNISTData.h
         Main.cpp)
 
-SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -march=native -ffast-math -funroll-loops -ggdb3")
+#[[SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -march=native -ffast-math -funroll-loops -ggdb3")]]
 
 find_package (Threads)
 find_package(X11 REQUIRED)

@@ -25,7 +25,6 @@ Algorithm::Algorithm(ORLData *data) {
 
 Algorithm::~Algorithm() {
     delete input_data;
-    delete pca_data;
 }
 
 void Algorithm::generateCSV() {
@@ -49,7 +48,7 @@ void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
     image.display("Image");*/
 }
 
-float Algorithm::calculateAccuracy(bool usePCA) {
+float Algorithm::calculateAccuracy() {
     float positives = 0;
 
     for (auto const &element : input_data->getTestingElements())
@@ -61,7 +60,7 @@ float Algorithm::calculateAccuracy(bool usePCA) {
     return positives;
 }
 
-void Algorithm::nearestClassCentroid(bool usePCA) {
+void Algorithm::nearestClassCentroid() {
     std::cout << "* Running nearest class centroid" << std::endl;
     /* Training part: construct the mean vector of each class */
     std::map<int, Eigen::VectorXd> mean_class_vectors;
@@ -101,14 +100,14 @@ void Algorithm::nearestClassCentroid(bool usePCA) {
 	element.given_class = optimumClass;
     }
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 
     /*std::cout << "\t-> Visualizing first test element: label -> " << input_data->getTestingElements().at(0).label << " - class -> "
        << input_data->getTestingElements().at(0).given_class << std::endl;	
     visualiseImageVector(input_data->getTestingElements().at(0).data);*/
 }
 
-void Algorithm::nearestSubClassCentroid(bool usePCA, int nbSubClasses) {
+void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     std::cout << "* Running nearest sub-class centroid" << std::endl;
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate;
@@ -189,27 +188,32 @@ void Algorithm::nearestSubClassCentroid(bool usePCA, int nbSubClasses) {
         element.given_class = optimumClass;
     }
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
-void Algorithm::threadedNearestNeighbour(bool usePCA) {
+void Algorithm::threadedNearestNeighbour() {
     std::cout << "* Running threaded nearest neighbour..." << std::endl;
 
     std::vector<std::thread> workers;
-    for (auto &testing_element : input_data->getTestingElements()) {
-        
-        workers.push_back(std::thread([this, &testing_element]() {
-            double lowestDistance = -1;
-            for (auto const& training_class : input_data->getTrainingElements()) {
-                for (auto  const& training_element : training_class.second) {
-                    double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
+	int from, to;
+	for (int i = 0; i < 4; i++) {
+        from = input_data->getTestingElements().size() / 4 * i;
+		to = from + input_data->getTestingElements().size() / 4;
+        workers.push_back(std::thread([this, from, to]() {
+			for (int i = from; i < to; i++) {
+				DataInput::Element &testing_element = input_data->getTestingElements().at(i);
+				double lowestDistance = -1;
+				for (auto const& training_class : input_data->getTrainingElements()) {
+					for (auto  const& training_element : training_class.second) {
+						double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
 
-                    if (distance < lowestDistance || lowestDistance == -1) {
-                        lowestDistance = distance;
-                        testing_element.given_class = training_class.first;
-                    }
-                }
-            }
+						if (distance < lowestDistance || lowestDistance == -1) {
+							lowestDistance = distance;
+							testing_element.given_class = training_class.first;
+						}
+					}
+				}
+			}
         }));
     }
 
@@ -218,12 +222,13 @@ void Algorithm::threadedNearestNeighbour(bool usePCA) {
         t.join();
     });
 	
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 
-void Algorithm::nearestNeighbour(bool usePCA) {
+void Algorithm::nearestNeighbour() {
     std::cout << "* Running nearest neighbour..." << std::endl;
+	long n = 0;
 
     for (auto &testing_element : input_data->getTestingElements()) {
 		double lowestDistance = -1;
@@ -237,13 +242,16 @@ void Algorithm::nearestNeighbour(bool usePCA) {
 				}
 			}
 		}
+		n++;
     }
 
-	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy(usePCA) * 100 << "%" << std::endl << std::endl;
+	std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 
 void Algorithm::applyPCA() {
+	std::cout << "* Applying PCA..." << std::endl;
+
 	Eigen::MatrixXd D;
 	D.resize(input_data->getVectorSize(), 0);
 	int i = 0;
@@ -258,7 +266,6 @@ void Algorithm::applyPCA() {
 
 	// 1. Compute the mean image
 	training_data_mean_vector = D.rowwise().mean().transpose();
-	std::cout << training_data_mean_vector.rows() << "x" << training_data_mean_vector.cols() << std::endl;
 
 	// 2. Subtract mean image from the data set to get mean centered data vector
 	Eigen::MatrixXd centered(D.colwise() - training_data_mean_vector);
@@ -278,15 +285,17 @@ void Algorithm::applyPCA() {
 	
 	training_data_eigen_vectors = pca_matrix;
 
-	/* Generate PCA'd input data */
-	pca_data = input_data;
-	for (auto &training_class : pca_data->getTrainingElementsRef())
+	/* Apply PCA */
+	for (auto &training_class : input_data->getTrainingElementsRef())
 		for (auto &training_element : training_class.second)
 			training_element.data = pca_matrix.transpose() * training_element.data;
 
 	/* Normalize testing data */
-	for (auto &testing_element : pca_data->getTestingElements()) {
+	for (auto &testing_element : input_data->getTestingElements()) {
 		testing_element.data = testing_element.data - training_data_mean_vector;
 		testing_element.data = pca_matrix.transpose() * testing_element.data;
 	}
+
+	input_data->setWidth(1);
+	input_data->setHeight(2);
 }

@@ -18,7 +18,6 @@ class Algorithm {
 
 	private:
 		DataInput *input_data;
-		DataInput *pca_data; /* 2D data after applying PCA */
 		Eigen::VectorXd training_data_mean_vector;
 		Eigen::MatrixXd training_data_eigen_vectors;
 
@@ -30,12 +29,12 @@ class Algorithm {
 		~Algorithm();
 
 		void applyPCA(); /* Generate 2D data based on the input_data */
-		void nearestClassCentroid(bool usePCA);
-		void nearestSubClassCentroid(bool usePCA, int nbSubClasses);
-		void nearestNeighbour(bool usePCA);
-		void threadedNearestNeighbour(bool usePCA);
+		void nearestClassCentroid();
+		void nearestSubClassCentroid(int nbSubClasses);
+		void nearestNeighbour();
+		void threadedNearestNeighbour();
 		void generateCSV(); /* Generate a CSV file to plot it in Matlab */
-		float calculateAccuracy(bool usePCA);
+		float calculateAccuracy();
 };
 
 #endif
