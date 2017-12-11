@@ -36,7 +36,8 @@ int main(int argc, char  **argv) {
 	algoA.nearestSubClassCentroid(3);
 	algoA.nearestSubClassCentroid(5);
 	algoA.threadedNearestNeighbour();*/
-	algoA.perceptronMSE();
+	//algoA.perceptronMSE();
+	algoA.perceptronBPG();
 /*
 	int ch = std::cin.get();
 
@@ -66,7 +67,8 @@ int main(int argc, char  **argv) {
 	algoB.nearestSubClassCentroid(3);
 	algoB.nearestSubClassCentroid(5);
 	algoB.threadedNearestNeighbour();*/
-	algoB.perceptronMSE();
+	//algoB.perceptronMSE();
+	algoB.perceptronBPG();
 
 
 	return 0;

@@ -284,6 +284,7 @@ void Algorithm::classify_perceptrons_MSE(Eigen::MatrixXd weights) {
     }
 }
 
+/* Taken from https://stackoverflow.com/questions/2704521/generate-random-double-numbers-in-c */
 double fRand(double fMin, double fMax)
 {
     double f = (double)rand() / RAND_MAX;
@@ -365,13 +366,42 @@ void Algorithm::train_perceptrons_BPG(Eigen::MatrixXd &weights) {
 }
 
 void Algorithm::classify_perceptrons_BPG(Eigen::MatrixXd weights) {
-    
+    std::cout << "\t -> Classifying..." << std::endl;
+
+    /* Build the testing elements matrix */
+    int n = 0;
+    Eigen::MatrixXd testing_elements_matrix(input_data->getVectorSize(), input_data->getTestingElements().size());
+    for (auto const &testing_element : input_data->getTestingElements()) {
+	testing_elements_matrix.col(n) = testing_element.data;
+	n++;
+    }
+
+    /* Augment the data */
+    Eigen::MatrixXd augmented_test_elements(testing_elements_matrix);
+    augmented_test_elements.conservativeResize(augmented_test_elements.rows() + 1, Eigen::NoChange);
+    augmented_test_elements.row(augmented_test_elements.rows() - 1).setZero();
+
+    /* Compute classification */
+    Eigen::MatrixXd computed_elements(weights.transpose() * augmented_test_elements);
+    n = 0;
+    for (auto const &training_class : input_data->getTrainingElements()) {
+	for (int i = 0; i < computed_elements.cols(); i++) {
+	    if (computed_elements.row(n)(i) > 0)
+		input_data->getTestingElements().at(i).given_class = training_class.first;
+
+	}
+	n++;
+    }
 }
 
 void Algorithm::perceptronBPG() {
     std::cout << "* Running a neural network of perceptrons using Back-Propagation..." << std::endl;
 
     Eigen::MatrixXd weights;
+    train_perceptrons_BPG(weights);
+    classify_perceptrons_BPG(weights);
+
+    std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
 }
 
 
