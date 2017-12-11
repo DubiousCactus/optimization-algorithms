@@ -53,7 +53,7 @@ void ORLData::randomlySplitData(std::vector<DataInput::Element> data) {
 	}
 	
 	/* Assing the remaining to test elements */
-	for (int j = from; j < to; j++)
+	for (int j = from; j <= to; j++)
 	    if (data.at(j).label != -1)
 		mTestingElements.push_back(data.at(j));
     }
