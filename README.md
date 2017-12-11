@@ -13,7 +13,7 @@ The following classification algorithms are implemented:
 - [x] Nearest sub-class centroid
 - [x] Nearest neighbour
 - [ ] Perceptron trained using backpropagation
-- [ ] Perceptron trained using MSE
+- [x] Perceptron trained using MSE
 
 # External libraries & requirements
 
@@ -21,4 +21,3 @@ This project uses the following embedded libraries:
 
 - [**Eigen**](http://eigen.tuxfamily.org/index.php?title=Main_Page): A C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.
 - [**mnist-parser**](https://github.com/wichtounet/mnist): A simple C++ reader for MNIST dataset
-- [**CImg**](http://cimg.eu/): A small, open-source, and modern C++ toolkit for image processing

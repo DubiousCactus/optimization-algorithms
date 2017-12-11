@@ -9,11 +9,6 @@
 #include <math.h>
 #include <thread>
 #include "Eigen/Eigenvalues"
-/*
-#include "CImg.h"
-
-using namespace cimg_library;*/
-
 
 Algorithm::Algorithm(MNISTData *data) {
     input_data = data;
@@ -29,23 +24,6 @@ Algorithm::~Algorithm() {
 
 void Algorithm::generateCSV() {
 
-}
-
-/* Recompose an image matrix from a given vector, and display it on screen.
- * NB: halts the program execution until exited
- */
-void Algorithm::visualiseImageVector(Eigen::VectorXd image_vector) {
-    /* Build the matrix from the vector */
-/*    int width = input_data->getWidth();
-    int height = input_data->getHeight();
-    double image_matrix[width][height];
-
-    for (int i = 0; i < image_vector.size() / width; i++)
-	for (int j = 0; j < height; j++)
-	    image_matrix[i][j] = image_vector(j + (width * i));
-
-    CImg<double> image((const double*) image_matrix, width, height, 1, 1, true);
-    image.display("Image");*/
 }
 
 float Algorithm::calculateAccuracy() {
