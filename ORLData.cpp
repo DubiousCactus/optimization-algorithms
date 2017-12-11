@@ -9,27 +9,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-/*#include "CImg.h"
-
-using namespace cimg_library;*/
-
-/* Recompose an image matrix from a given vector, and display it on screen.
- * NB: halts the program execution until exited
- */
-void ORLData::visualiseImageVector(Eigen::VectorXd image_vector) {
-    /* Build the matrix from the vector */
-    /*double image_matrix[mWidth][mHeight];
-
-    for (int i = 0; i < mWidth; i++) {
-        for (int j = 0; j < mWidth; j++) {
-            image_matrix[i][j] = image_vector(j + (mHeight * i));
-	    std::cout  << "Matrix[" << i << "][" << j << "] = image_vector[" << j + (mHeight * i) << "]" << std::endl;
-	}
-    }
-
-    CImg<double> image((const double*) image_matrix, mWidth, mHeight, 1, 1, true);
-    image.display("Image");*/
-}
 
 
 /* Randomly split the given data in two sets: 70% in training set and 30% in the testing set */

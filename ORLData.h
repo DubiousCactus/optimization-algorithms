@@ -15,7 +15,6 @@ class ORLData : public DataInput {
 	private:
 		int mNbElements;
 
-		void visualiseImageVector(Eigen::VectorXd image_vector);
 		void randomlySplitData(std::vector<DataInput::Element> data);
 
 	public:
