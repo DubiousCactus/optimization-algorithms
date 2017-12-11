@@ -45,6 +45,7 @@ int main(int argc, char  **argv) {
 	digitsPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
 
 	Algorithm algoBPCA(digitsPCA);
+	algoAPCA.applyPCA();
 	algoBPCA.nearestClassCentroid();
 	algoBPCA.nearestSubClassCentroid(2);
 	algoBPCA.nearestSubClassCentroid(3);
