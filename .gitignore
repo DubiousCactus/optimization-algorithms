@@ -6,3 +6,4 @@ MNIST/
 *.o
 .idea/
 cmake-build-debug/
+OptimizationAlgorithms
