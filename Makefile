@@ -9,7 +9,7 @@ OptimizationAlgorithms:	Main.o Algorithm.o MNISTData.o ORLData.o
 main:	Main.cpp Algorithm.h
 		$(CC) $(CFLAGS) -c Main.cpp
 
-algorithm:	Algorithm.cpp Algorithm.h MNISTData.h ORLData.h
+algorithm:	Algorithm.cpp Algorithm.h MNISTData.h ORLData.h opennn/opennn.h
 			$(CC) $(CFLAGS) -c Algorithm.cpp
 
 mnistdata:	MNISTData.cpp MNISTData.h DataInput.h

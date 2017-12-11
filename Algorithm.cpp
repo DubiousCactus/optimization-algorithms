@@ -249,6 +249,51 @@ void Algorithm::nearestNeighbour() {
 }
 
 
+void Algorithm::train_perceptrons_MSE(Eigen::MatrixXd &outputVectors, Eigen::MatrixXd &weights) {
+    std::cout << "\t -> Training perceptron using MSE..." << std::endl;
+    /* Initialize output vectors */
+    for (int i = 0; i < outputVectors.cols(); i++)
+	outputVectors.col(i) *= -1;
+
+    /* Train the perceptrons */
+    int n = 0, c = 0;
+    for (auto const& training_class : input_data->getTrainingElements()) {
+        for (auto const& training_element : training_class.second)
+            outputVectors(c, n++) = 1;
+
+        c++;
+    }
+
+    /* Build the training elements matrix */
+    int i = 0;
+    Eigen::MatrixXd training_elements_matrix(input_data->getVectorSize(), input_data->getNbTrainingElements());
+    for (auto const& training_class : input_data->getTrainingElements())
+	for (auto const& training_element : training_class.second)
+	    training_elements_matrix.col(i++) = training_element.data;
+
+    /* Build the identity matrix of the train elements matrix's size */
+    Eigen::MatrixXd identity(training_elements_matrix.rows(), training_elements_matrix.rows());
+    identity.setIdentity();
+
+    /* Apply the thing */
+    Eigen::MatrixXd m(training_elements_matrix * training_elements_matrix.transpose()
+                     + LEARNING_RATE_MSE * identity);
+
+    /* Get the pseudo-inverse of the transposed training data and generate weights matrix */
+    weights = Eigen::MatrixXd(m.inverse() * training_elements_matrix) * outputVectors.transpose();
+}
+
+
+void Algorithm::perceptronMSE() {
+    std::cout << "* Running a neural network of perceptrons using MSE..." << std::endl;
+
+    Eigen::MatrixXd outputVectors(input_data->getNbClasses(), input_data->getNbTrainingElements());
+    outputVectors.setOnes();
+    Eigen::MatrixXd weights;
+
+    train_perceptrons_MSE(outputVectors, weights);
+}
+
 void Algorithm::applyPCA() {
 	std::cout << "* Applying PCA..." << std::endl;
 
@@ -298,4 +343,6 @@ void Algorithm::applyPCA() {
 
 	input_data->setWidth(1);
 	input_data->setHeight(2);
+
+	std::cout << "* PCA applied !" << std::endl << std::endl;
 }

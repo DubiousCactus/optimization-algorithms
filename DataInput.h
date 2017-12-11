@@ -54,6 +54,14 @@ class DataInput {
 		int getHeight() { return mHeight; }
 		void setWidth(int width) { mWidth = width; }
 		void setHeight(int height) { mHeight = height; }
+		
+		int getNbTrainingElements() {
+			int count = 0;
+			for (auto const &tclass : mTrainingElements)
+				count += tclass.second.size();
+
+			return count;
+		}
 };
 
 #endif

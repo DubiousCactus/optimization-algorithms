@@ -10,12 +10,12 @@
 int main(int argc, char  **argv) {
 
 	srand((unsigned) time(NULL));
-
+/*
 
 	std::cout << "--- Using ORL dataset: PCA version ---" << std::endl << std::endl;
 
 	ORLData *facesForPCA = new ORLData(40, 30, 40, 400);
-	facesForPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+	facesForPCA->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 	
 	Algorithm algoAPCA(facesForPCA);
 	algoAPCA.applyPCA();
@@ -24,28 +24,29 @@ int main(int argc, char  **argv) {
 	algoAPCA.nearestSubClassCentroid(3);
 	algoAPCA.nearestSubClassCentroid(5);
 	algoAPCA.threadedNearestNeighbour();
-
+*/
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
 	ORLData *faces = new ORLData(40, 30, 40, 400);
-	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 
 	Algorithm algoA(faces);
-	algoA.nearestClassCentroid();
+	/*algoA.nearestClassCentroid();
 	algoA.nearestSubClassCentroid(2);
 	algoA.nearestSubClassCentroid(3);
 	algoA.nearestSubClassCentroid(5);
-	algoA.threadedNearestNeighbour();
-
+	algoA.threadedNearestNeighbour();*/
+	algoA.perceptronMSE();
+/*
 	int ch = std::cin.get();
 
 	std::cout << "--- Using MNIST dataset: PCA ---" << std::endl << std::endl;
 	
 	MNISTData *digitsPCA = new MNISTData(10, 28, 28);
-	digitsPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
+	digitsPCA->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoBPCA(digitsPCA);
-	algoAPCA.applyPCA();
+	algoBPCA.applyPCA();
 	algoBPCA.nearestClassCentroid();
 	algoBPCA.nearestSubClassCentroid(2);
 	algoBPCA.nearestSubClassCentroid(3);
@@ -57,15 +58,15 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 
 	MNISTData *digits = new MNISTData(10, 28, 28);
-	digits->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
+	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoB(digits);
-	/*algoB.nearestClassCentroid();
+	algoB.nearestClassCentroid();
 	algoB.nearestSubClassCentroid(2);
 	algoB.nearestSubClassCentroid(3);
-	algoB.nearestSubClassCentroid(5);*/
+	algoB.nearestSubClassCentroid(5);
 	algoB.threadedNearestNeighbour();
-
+*/
 
 	return 0;
 }
