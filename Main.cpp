@@ -52,7 +52,7 @@ int main(int argc, char  **argv) {
 	algoBPCA.nearestSubClassCentroid(3);
 	algoBPCA.nearestSubClassCentroid(5);
 	algoBPCA.threadedNearestNeighbour();
-
+*/
 
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
@@ -61,12 +61,13 @@ int main(int argc, char  **argv) {
 	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoB(digits);
-	algoB.nearestClassCentroid();
+	/*algoB.nearestClassCentroid();
 	algoB.nearestSubClassCentroid(2);
 	algoB.nearestSubClassCentroid(3);
 	algoB.nearestSubClassCentroid(5);
-	algoB.threadedNearestNeighbour();
-*/
+	algoB.threadedNearestNeighbour();*/
+	algoB.perceptronMSE();
+
 
 	return 0;
 }

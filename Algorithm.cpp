@@ -284,9 +284,99 @@ void Algorithm::classify_perceptrons_MSE(Eigen::MatrixXd weights) {
     }
 }
 
+double fRand(double fMin, double fMax)
+{
+    double f = (double)rand() / RAND_MAX;
+    return fMin + f * (fMax - fMin);
+}
+
+void Algorithm::train_perceptrons_BPG(Eigen::MatrixXd &weights) {
+    std::cout << "\t -> Training perceptrons..." << std::endl;
+
+    /* Build the training elements matrix */
+    int i = 0;
+    Eigen::MatrixXd training_elements_matrix(input_data->getVectorSize(), input_data->getNbTrainingElements());
+    for (auto const& training_class : input_data->getTrainingElements())
+	for (auto const& training_element : training_class.second)
+	    training_elements_matrix.col(i++) = training_element.data;
+
+    /* Augment the data */
+    Eigen::MatrixXd augmented_data(training_elements_matrix);
+    augmented_data.conservativeResize(augmented_data.rows() + 1, Eigen::NoChange);
+    augmented_data.row(augmented_data.rows() - 1).setOnes();
+
+    /* Initialize the weights */
+    weights.resize(input_data->getVectorSize() + 1, input_data->getNbClasses());
+    weights.setOnes();
+    weights.row(weights.rows() - 1).setZero(); //Augment the weights
+    weights *= fRand(-0.1, 0.1); //Randomly initialize
+
+    /* Initialize output vectors */
+    Eigen::MatrixXd outputVectors(input_data->getNbClasses(), input_data->getNbTrainingElements());
+    outputVectors.setOnes();
+     
+    for (int i = 0; i < outputVectors.cols(); i++)
+	outputVectors.col(i) *= -1;
+    
+    /* Set the right values */
+    int n = 0, c = 0;
+    for (auto const& training_class : input_data->getTrainingElements()) {
+        for (auto const& training_element : training_class.second)
+            outputVectors(c, n++) = 1;
+
+        c++;
+    }
+
+    std::vector<int> misclassified_elements; //Row indexes of the criterion function
+    Eigen::MatrixXd criterion_function(input_data->getNbClasses(), input_data->getNbTrainingElements());
+    criterion_function.setZero();
+
+    c = 200;
+    /* Iterate while there are misclassified elements and counter not equal to zero */
+    while (!misclassified_elements.empty() && c--) {
+	/* Empty the misclassified elements */
+	misclassified_elements.clear();
+
+	/* Update the criterion function */
+	for (int i = 0; i < input_data->getNbTrainingElements(); i++)
+	    criterion_function.col(i) = outputVectors.col(i).cwiseProduct(weights.transpose() * augmented_data.col(i));
+
+	for (int i = 0; i < input_data->getNbClasses(); i++) {
+	    /* Find all misclassified elements */
+	    for (int j = 0; j < criterion_function.rows(); j++)
+		for (int k = 0; j < criterion_function.cols(); j++)
+		    if (criterion_function(j, k) < 0) //Misclassified !
+			misclassified_elements.push_back(k); //Add the row index to the list
+
+	    /* Calculate the gradiant and update the weights */
+	    Eigen::VectorXd gradiant;
+	    gradiant.setZero();
+
+	    int k = 0;
+	    for (auto const &misclassified_element : misclassified_elements)
+		gradiant += misclassified_element * outputVectors.row(k++);
+
+	    gradiant *= LEARNING_RATE;
+
+	    /* Update the weights */
+	    weights.col(i) += gradiant;
+	}
+    }
+}
+
+void Algorithm::classify_perceptrons_BPG(Eigen::MatrixXd weights) {
+    
+}
+
+void Algorithm::perceptronBPG() {
+    std::cout << "* Running a neural network of perceptrons using Back-Propagation..." << std::endl;
+
+    Eigen::MatrixXd weights;
+}
+
 
 void Algorithm::perceptronMSE() {
-    std::cout << "* Running a neural network of perceptrons using MSE..." << std::endl;
+    std::cout << "* Running a neural network of perceptrons using Minimal Square Error..." << std::endl;
 
     Eigen::MatrixXd weights;
     train_perceptrons_MSE(weights);

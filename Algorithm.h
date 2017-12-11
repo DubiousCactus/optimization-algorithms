@@ -13,6 +13,7 @@
 #include "ORLData.h"
 
 #define KMEANS_MAX_DISTANCE 1 //Max distance allowed between two iterations of the same mean vector
+#define LEARNING_RATE 0.1
 
 class Algorithm {
 
@@ -22,7 +23,9 @@ class Algorithm {
 		Eigen::MatrixXd training_data_eigen_vectors;
 
 		void train_perceptrons_MSE(Eigen::MatrixXd &weights);
+		void train_perceptrons_BPG(Eigen::MatrixXd &weights);
 		void classify_perceptrons_MSE(Eigen::MatrixXd weights);
+		void classify_perceptrons_BPG(Eigen::MatrixXd weights);
 
 	public:
 		Algorithm(MNISTData *data);
@@ -34,7 +37,8 @@ class Algorithm {
 		void nearestSubClassCentroid(int nbSubClasses);
 		void nearestNeighbour();
 		void threadedNearestNeighbour();
-		void perceptronMSE();
+		void perceptronBPG(); //Back-propagation
+		void perceptronMSE(); //Minimal Square Error
 		void generateCSV(); /* Generate a CSV file to plot it in Matlab */
 		float calculateAccuracy();
 };
