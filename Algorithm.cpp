@@ -267,8 +267,10 @@ void Algorithm::classify_perceptrons_MSE(Eigen::MatrixXd weights) {
     /* Build the testing elements matrix */
     int n = 0;
     Eigen::MatrixXd testing_elements_matrix(input_data->getVectorSize(), input_data->getTestingElements().size());
-    for (auto const &testing_element : input_data->getTestingElements())
+    for (auto const &testing_element : input_data->getTestingElements()) {
 	testing_elements_matrix.col(n) = testing_element.data;
+	n++;
+    }
 
     Eigen::MatrixXd computed_elements(weights.transpose() * testing_elements_matrix);
     n = 0;
