@@ -508,8 +508,6 @@ void Algorithm::applyPCA() {
 
     std::cout << "* PCA applied !" << std::endl << std::endl;
 
-
-	/* --------------------- GENERATING CSV FILE OF PCA DIMENSIONS - QUICK N DIRTY -----------*/
 	//line 1: labels
 	//line 2: dimension 1
 	//line 3: dimension 2
@@ -518,14 +516,14 @@ void Algorithm::applyPCA() {
 
 	std::vector<int> classes;
 	std::vector<double> dimension1, dimension2;
-	i = 0;
+	int i = 0;
 
     for (auto const &training_class : input_data->getTrainingElements()) {
 		classes.push_back(training_class.first);
 
 		for (auto const &training_element : training_class.second) {
-			dimension1.push_back(training_element.data.row(0)[0]);
-			dimension2.push_back(training_element.data.row(1)[0]);
+			dimension1.push_back(training_element.data.col(0)(i));
+			dimension2.push_back(training_element.data.col(1)(i));
 			i++;
 		}
     }
@@ -533,8 +531,8 @@ void Algorithm::applyPCA() {
 	i = 0;
 	for (auto const &testing_element : input_data->getTestingElements()) {
 		classes.push_back(testing_element.label);
-		dimension1.push_back(testing_element.data.row(0)[0]);
-		dimension2.push_back(testing_element.data.row(1)[0]);
+		dimension1.push_back(testing_element.data.col(0)(i));
+		dimension2.push_back(testing_element.data.col(1)(i));
 		i++;
 	}
 
