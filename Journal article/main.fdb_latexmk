@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1513107582 "main.tex" "main.pdf" "main" 1513107582
+["pdflatex"] 1513115468 "main.tex" "main.pdf" "main" 1513115468
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1510784341 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -60,14 +60,17 @@
   "/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty" 1510784350 12095 5337833c991d80788a43d3ce26bd1c46 ""
   "/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty" 1510784350 7075 2fe3d848bba95f139de11ded085e74aa ""
   "/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty" 1510784350 22417 1d9df1eb66848aa31b18a593099cf45c ""
+  "/usr/share/texmf-dist/tex/latex/psnfss/omsptm.fd" 1510784349 576 95c2c0baea9c719a4be29a3d4122498b ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd" 1510784349 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "/usr/share/texmf-dist/tex/latex/tools/xspace.sty" 1510784349 4544 8b8f59969458e1c25e0559e8e0ced1a4 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1510784374 32585 d82bbcf7626b7842c87671687479e852 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512469076 2399468 cd50ac8978eb0c6504f5f6da528ede46 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1510828241 7736839 f7a91338fb39ebea778d5e686e1a4943 ""
   "IEEEtran.cls" 1412935638 202657 f6698b073bb6e66a6e6436a00d85499c ""
-  "main.aux" 1513107576 1401 a907cb50d96d59d04ba896a66d5bcfcd ""
-  "main.tex" 1513107581 34636 c5ffe0343201ca7496f667d75ac11d0d ""
+  "main.aux" 1513115377 1593 4ecb418f5549f0942e51fdea6a3dd646 ""
+  "main.tex" 1513115466 36429 08e0124452c7ca7bf7f85b8b007c2cea ""
+  "mnist_example.png" 1513114555 10168 a1370bcd9c53c4e8b31176dabe91817d ""
+  "orl.jpg" 1513114645 7150 aa6a10383a6fd26d4a1b64b5a412d52f ""
   "picture.png" 1412935638 14848 03aea4a00da11fd0cb69b384b3655503 ""
   (generated)
   "main.log"

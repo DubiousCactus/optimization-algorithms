@@ -383,6 +383,8 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
 \begin{document}
 %
 % paper title
@@ -507,12 +509,11 @@ The methods, or classification algorithms in this case, will be described and ex
 \subsection{Nearest Centroid Classifier}
 This first algorithm is rudimentary and very simple to understand. Firstly, during the training phase, a mean vector is calculated for each class, by averaging all the training samples of the given class. Then, in the classification phase, each test sample is classified by calculating its euclidean distance to each mean vector: the lowest distance indicates the nearest class for the test element. The euclidean distance formula is: 
 \begin{equation}
-  ||x_{n} - m_{c}||_{2}^2
+	d_E(\mathbf{x}_i,\mathbf{x}_j) =\norm{ \mathbf{x}_i-\mathbf{x}_j}_2 = \sqrt{(\mathbf{x}_i-\mathbf{x}_j)^\top(\mathbf{x}_i-\mathbf{x}_j)}
 \end{equation}
-with $x_{n}$ being the tested sample of index $n$, and $m_{c}$ the mean vector of class $c$. The distance is calculated via the $l_{2}$-norm of the substraction of the two vectors, to the power of two.
 
 \subsection{Nearest Sub-class Centroid Classifier}
-This classifier is basically an enhanced version of the Nearest Centroid Classifier, where the K-means algorithm has been applied in the training phase. This results in a clustered class, which holds N mean vectors corresponding to N sub-classes (clusters) instead of just one mean class vector. The number of sub-classes N is, theoretically, giving better and more accurate results for a higher value, as it yields more choices for the testing phase.
+This classifier is basically an enhanced version of the Nearest Centroid Classifier, where the K-means algorithm has been applied in the training phase. This results in a clustered class, which holds K mean vectors corresponding to K sub-classes (clusters) instead of just one mean class vector. The number of sub-classes K is, theoretically, giving better and more accurate results for a higher value, as it yields more choices for the testing phase.
 
 \tab The classification of elements is done the same way as for the Nearest Centroid, however each test sample is compared to each mean sub-class vector of each class. The number of sub-classes is to be fine-tuned empirically, depending on the desired precision/speed ratio.
 
@@ -522,7 +523,7 @@ The last euclidean distance-based classifier, Nearest Neighbour, is the most tim
 \subsection{Perceptron trained using Backpropagation}
 A perceptron is a linear discriminant method of classification, that uses a discriminant function to determine wether a sample is belonging to a given class or not: it is a binary classifier. As one perceptron can only be used for one given class, several of them will be used to form a neural network, that will them be fed input data such as the aforementioned ORL image vectors, in order to train each perceptron to accept its given class and to reject every other. The discriminant function can be represented as:
 \begin{equation}
-  g(\mathbf{w})=\mathbf{w}^T\mathbf{x}+\omega_{0}
+  g(\mathbf{x})=\mathbf{w}^\top\mathbf{x}+\omega_{0}
 \end{equation}
 with $\mathbf{w}$ being the weights vector, and $\omega_{0}$ the bias, together constituting the discriminant. When the result of this function is above 0, the given $\mathbf{w}$ vector can be classified as belonging to the perceptron's class, otherwise it doesn't.
 
@@ -531,29 +532,62 @@ with $\mathbf{w}$ being the weights vector, and $\omega_{0}$ the bias, together 
   \mathcal{J}_p(\mathbf{w}) = \sum_{x_i \in \mathcal{X}} -l_i \tilde{\mathbf{w}}^\top \tilde{\mathbf{x}}_i
   \label{eq:perceptron}
 \end{equation}
-with $\chi$ being the set of misclassified samples for the perceptron, $l_i$ being the binary label of the misclassified sample, $\tilde{\mathbf{w}}$ corresponding to the augmented weights vector, and $\tilde{\mathbf{x}}_i$ the misclassidied training sample. This optimization problem can be solved using the gradient descent method as follow:
+with $\chi$ being the set of misclassified samples for the perceptron, $l_i$ being the binary label of the misclassified sample, $\tilde{\mathbf{w}}$ corresponding to the augmented weights vector, and $\tilde{\mathbf{x}}_i$ the augmented misclassified sample vector. This optimization problem can be solved using the gradient descent method as follow:
 \begin{equation}
   \mathbf{w}(t+1)=\mathbf{w}(t)+\eta \sum_{x_i \in \chi}-l_{i}\mathbf{x}_{i}
 \end{equation}
-with $\eta$ being the learning rate, which defines the step size of the gradient descent, also referred to as hyperparameter.
+with $\eta$ being the learning rate, which defines the step size of the gradient descent: it is a hyperparameter of the algorithm.
 
-\tab Finally, during the classification phase, the aforementioned function $g(X)$ is applied to each input vector, and the binary result is used to determine which class the input sample belongs to.
+\tab Finally, during the classification phase, the aforementioned function $g(x)$ is applied to each input vector, and the binary result is used to determine which class the input sample belongs to.
 
 \subsection{Perceptron trained using Mean Square Error}
 This last classifier is essentialy similar to the previous perceptron, except that it treats the criterion function as a quadratic problem and directly tries to solve it. This training method for the perceptron yields better results for cases where the data classes are not linearly separable. The criterion function can be written as:
 \begin{equation}
-  \mathcal{J}_p(\mathbf{w}) = ||\mathbf{X}^T\mathbf{w}-\mathbf{b}||_2 ^2
+  \mathcal{J}_p(\mathbf{w}) = ||\mathbf{X}^\top\mathbf{w}-\mathbf{b}||_2 ^2
 \end{equation}
-with $\mathbf{X}$ the matrix of training sample vectors, and $\mathbf{b}$ containing the output labels for the training samples.
+with $\mathbf{X}$ the matrix of training sample vectors, and $\mathbf{b}$ containing the output labels for the training samples. The actual solution of this function is the following:
+\begin{equation}
+  \mathbf{X}^\dagger = \lim_{\epsilon \to 0}(\mathbf{X}\mathbf{X}^\top + \epsilon\mathbf{I})^{-1}\mathbf{X}
+\end{equation}
+In order to make sure that the result of the matrices product is invertible, a neglectibly small value is added to each element of the matrix.
 
 \subsection{Principal Component Analysis}
 Dimensional reduction of the datasets can be useful for proving that a high amount of dimensions will result in an equaly high classification accuracy, by comparing the original data with a 2D version of it. Moreover, it makes the data plottable on an orthogonal space, and easy to visualize by emphasizing on the variation, which shows the strong patterns. In order to obtain the same data reduced to two dimensions, the Principal Component Analysis is applied to linearly transform it while keeping the most informative bits. The PCA transformation can be expressed as:
 \begin{equation}
-  y_i = \mathbf{W}^Tx_i
+  y_i = \mathbf{W}^\topx_i
 \end{equation}
 with $\mathbf{W}$ being a matrix of ordered eigenvectors of the original matrix, that can be used partially to reduce the number of dimensions equal to the number of eigenvectors used, and with more or less variation depending on the order of the chosen latter.
+
+
 \section{Results}
-\blindtext
+As stated previously, each algorithm has been applied to the MNIST and ORL datasets. It is important to know that the MNIST dataset comes already split in training data (60000 samples) and test data (10000 samples), whereas the ORL dataset had to be manually and randomly split in 70\% training samples and 30\% test samples.
+
+\tab The MNIST dataset is composed of 70000 pictures of handwritten digits in grayscale, from 0 to 9, and with an image resolution of 28x28.
+\begin{figure}
+  \centering
+    \reflectbox{%
+      \includegraphics[width=0.5\textwidth]{mnist_example.png}}
+  \caption{MNIST dataset sample}
+\end{figure}
+
+\tab The ORL dataset consists of 400 facial pictures, for it contains 10 pictures for each of the 40 persons, thus giving 40 classes.
+\begin{figure}
+  \centering
+    \reflectbox{%
+      \includegraphics[width=0.4\textwidth]{orl.jpg}}
+  \caption{ORL dataset sample}
+\end{figure}
+
+\tab Each algorithm has been compared by execution time, and success rate (or accuracy). It can be seen that changing the hyperparameters of one can drastically improve its success rate, as the Nearest Sub-class Centroid Classifier shows for instance, with the given hyperparameters \{2,3,5\} corresponding to the number of sub-classes. The learning rate for the backpropagation algorithm has been set to 0.1, after experimentation and fine-tuning.
+\\
+
+INSERT MNIST SUCCESS RATE
+\\
+
+INSERT ORL SUCCESS RATE
+\\
+
+\tab The bar diagrams showed in figure 3 and 4 clearly show that ...
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
