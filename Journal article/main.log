@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 23:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 23:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -446,19 +446,28 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+./main.tex:600: Undefined control sequence.
+l.600 \tab
+           The follong figures show the tremendous accuracy and processing t...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 753.
+(Font)              <8> on input line 755.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 753.
+(Font)              <6> on input line 755.
 <picture.png, id=24, 84.315pt x 98.3675pt>
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 769. on input line 769.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 769.
+Package pdftex.def Info: picture.png  used on input line 771. on input line 771.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 771.
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 769. on input line 769.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 769.
+Package pdftex.def Info: picture.png  used on input line 771. on input line 771.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 771.
 [3 <./picture.png> <./orl.jpg>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  2348 strings out of 492985
@@ -469,7 +478,7 @@ Here is how much of TeX's memory you used:
  1144 hyphenation exceptions out of 8191
  41i,10n,37p,631b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 176765 bytes).
+Output written on main.pdf (3 pages, 177330 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream

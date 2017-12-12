@@ -595,7 +595,9 @@ INSERT MNIST TIME CONSUMPTION
 INSERT ORL TIME CONSUMPTION
 \\
 
-\tab As it can be seen on figure 5 and 6, the execution time of the Nearest Neighbour is the highest, as stated above, while the other distance-based classifiers globally remain the fastest to compute.
+\tab As it can be seen on figure 5 and 6, the execution time of the Nearest Neighbour is the highest, as stated above, while the other distance-based classifiers globally remain the fastest to compute. In general, each algorithm is slightly slower to execute on the MNIST dataset, compared to the ORL dataset, and this is due to the fact that it is substantially larger than the latter. 
+
+\tab The follong figures show the tremendous accuracy and processing time reduction after applying PCA to the datasets, thus reducing their dimensions to only 2. It goes without saying that applying PCA only to reduce the data's dimensions to 2D doesn't serve any interest other than constating the huge loss of accuracy. However, as the reduction of dimensions greatly reduces the execution time, it can be interesting to experiment with the amount of dimensions that the data can be reduced to, in order to obtain acceptable success rates while profiting from the great time gain.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
