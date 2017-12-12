@@ -23,19 +23,19 @@ int main(int argc, char  **argv) {
 	Algorithm algoAPCA(facesForPCA);
 	algoAPCA.applyPCA();
 	orl_pcaExecTimes.push_back(algoAPCA.nearestClassCentroid());
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.nearestSubClassCentroid(2));
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.nearestSubClassCentroid(3));
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.nearestSubClassCentroid(5));
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.threadedNearestNeighbour());
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.perceptronBPG());
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 	orl_pcaExecTimes.push_back(algoAPCA.perceptronMSE());
-	orl_pcaScores.push_back(algoAPCA.calculateAccuracy());
+	orl_pcaScores.push_back(algoAPCA.calculateAccuracy() * 100);
 
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
@@ -44,19 +44,19 @@ int main(int argc, char  **argv) {
 
 	Algorithm algoA(faces);
 	orl_originalExeTimes.push_back(algoA.nearestClassCentroid());
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 	orl_originalExeTimes.push_back(algoA.nearestSubClassCentroid(2));
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 	orl_originalExeTimes.push_back(algoA.nearestSubClassCentroid(3));
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 	orl_originalExeTimes.push_back(algoA.nearestSubClassCentroid(5));
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 	orl_originalExeTimes.push_back(algoA.threadedNearestNeighbour());
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 	orl_originalExeTimes.push_back(algoA.perceptronBPG());
-	orl_originalScores.push_back(algoA.calculateAccuracy());
-	orl_pcaExecTimes.push_back(algoA.perceptronMSE());
-	orl_originalScores.push_back(algoA.calculateAccuracy());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
+	orl_originalExeTimes.push_back(algoA.perceptronMSE());
+	orl_originalScores.push_back(algoA.calculateAccuracy() * 100);
 
 	firstCSV.push_back(orl_originalScores);
 	firstCSV.push_back(orl_originalExeTimes);
