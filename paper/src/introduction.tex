@@ -1,0 +1,24 @@
+\section{Introduction}
+The importance of data analysis and machine learning in our modern day world is increasing day by day.
+And so is the number of different algorithms used.
+In this paper, five of the most basic classification algorithms are used to solve an images classification problem on two very popular datasets: The MNIST dataset of handwritten numbers and the ORL dataset of faces.
+Using the corresponding labels, each algorithm is trained in a supervised training process and then applied on a test set.
+The resulting success rate in combination with the execution time will be a measure on how efficient each algorithm is.
+
+In addition to applying the algorithms on the raw data, they are also applied on a reduced version of the dataset.
+This reduced version is obtained by applying the common \textit{Principal Component Analysis}.
+
+The following algorithms have been choosen and implemented in \texttt{Matlab}:
+\begin{itemize}
+	\item Nearest Centroid Classifier
+	\item Nearest Subclass Centroid Classifier
+	\item Nearest Neighbor Classifier
+	\item Perceptron, trained with Backpropagation
+	\item Perceptron, trained using the Minimum Square Error
+\end{itemize}
+
+The MNIST dataset consists of 60000 images while the ORL dataset only consists of 400.
+This opposes a problem since some of the algorithms rely on a large set of parameters that have to be optimized during the supervised learning.
+To overcome this problem and still get sufficient results, each algorithm is applied multiple times and the success rates and execution times are averaged.
+This helps to make the overall results more predictable.
+
