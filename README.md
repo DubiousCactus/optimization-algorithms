@@ -12,7 +12,7 @@ The following classification algorithms are implemented:
 - [x] Nearest class centroid
 - [x] Nearest sub-class centroid
 - [x] Nearest neighbour
-- [ ] Perceptron trained using backpropagation
+- [x] Perceptron trained using backpropagation
 - [x] Perceptron trained using MSE
 
 # External libraries & requirements
