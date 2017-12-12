@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 22:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -135,18 +135,18 @@ File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 386.
-LaTeX Font Info:    ... okay on input line 386.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 388.
+LaTeX Font Info:    ... okay on input line 388.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count109
@@ -202,17 +202,17 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Runaway argument?
-./main.tex:433: Paragraph ended before \markboth was complete.
+./main.tex:435: Paragraph ended before \markboth was complete.
 <to be read again> 
                    \par 
-l.433 
+l.435 
       
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-./main.tex:491: Undefined control sequence.
-l.491 \tab
+./main.tex:493: Undefined control sequence.
+l.493 \tab
            This study focuses on classification of two sets of images: the M...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -220,8 +220,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./main.tex:493: Undefined control sequence.
-l.493 \tab
+./main.tex:495: Undefined control sequence.
+l.495 \tab
            The following optimization algorithms will be applied on the said...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -230,11 +230,57 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 495.
+(Font)              <7> on input line 497.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 495.
-./main.tex:517: Undefined control sequence.
-l.517 \tab
+(Font)              <5> on input line 497.
+./main.tex:512: Undefined control sequence.
+\norm #1->\left \lVert 
+                       #1\right \rVert 
+l.512 ...{x}_j) =\norm{ \mathbf{x}_i-\mathbf{x}_j}
+                                                  _2 = \sqrt{(\mathbf{x}_i-\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:512: Missing delimiter (. inserted).
+<to be read again> 
+                   \math@bgroup 
+l.512 ...{x}_j) =\norm{ \mathbf{x}_i-\mathbf{x}_j}
+                                                  _2 = \sqrt{(\mathbf{x}_i-\...
+I was expecting to see something like `(' or `\{' or
+`\}' here. If you typed, e.g., `{' instead of `\{', you
+should probably delete the `{' by typing `1' now, so that
+braces don't get unbalanced. Otherwise just proceed.
+Acceptable delimiters are characters whose \delcode is
+nonnegative, or you can use `\delimiter <delimiter code>'.
+
+./main.tex:512: Undefined control sequence.
+\norm #1->\left \lVert #1\right \rVert 
+                                       
+l.512 ...{x}_j) =\norm{ \mathbf{x}_i-\mathbf{x}_j}
+                                                  _2 = \sqrt{(\mathbf{x}_i-\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:512: Missing delimiter (. inserted).
+<to be read again> 
+                   _
+l.512 ...x}_j) =\norm{ \mathbf{x}_i-\mathbf{x}_j}_
+                                                  2 = \sqrt{(\mathbf{x}_i-\m...
+I was expecting to see something like `(' or `\{' or
+`\}' here. If you typed, e.g., `{' instead of `\{', you
+should probably delete the `{' by typing `1' now, so that
+braces don't get unbalanced. Otherwise just proceed.
+Acceptable delimiters are characters whose \delcode is
+nonnegative, or you can use `\delimiter <delimiter code>'.
+
+./main.tex:518: Undefined control sequence.
+l.518 \tab
            The classification of elements is done the same way as for the Ne...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -246,33 +292,168 @@ and I'll forget about whatever was undefined.
 
 
 ]
+./main.tex:530: Undefined control sequence.
+l.530 \tab
+           During the training phase, the weight vectors have to be computed...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:541: Undefined control sequence.
+l.541 \tab
+           Finally, during the classification phase, the aforementioned func...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:557: Undefined control sequence.
+l.557   y_i = \mathbf{W}^\topx
+                              _i
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:557: Missing { inserted.
+<to be read again> 
+                   _
+l.557   y_i = \mathbf{W}^\topx_
+                               i
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./main.tex:558: You can't use `\eqno' in math mode.
+\endequation ->\eqno 
+                     \hbox {\@eqnnum }$$\@ignoretrue 
+l.558 \end{equation}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./main.tex:558: Missing } inserted.
+<inserted text> 
+                }
+l.558 \end{equation}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./main.tex:565: Undefined control sequence.
+l.565 \tab
+           The MNIST dataset is composed of 70000 pictures of handwritten di...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<mnist_example.png, id=18, 421.575pt x 316.18124pt>
+File: mnist_example.png Graphic file (type png)
+<use mnist_example.png>
+Package pdftex.def Info: mnist_example.png  used on input line 569. on input line 569.
+Package pdftex.def Info: Requested size: 262.04987pt x 196.54173pt on input line 569.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 569--570
+ [][] 
+ []
+
+./main.tex:573: Undefined control sequence.
+l.573 \tab
+           The ORL dataset consists of 400 facial pictures, for it contains ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<orl.jpg, id=19, 353.32pt x 64.24pt>
+File: orl.jpg Graphic file (type jpg)
+<use orl.jpg>
+Package pdftex.def Info: orl.jpg  used on input line 577. on input line 577.
+Package pdftex.def Info: Requested size: 209.63669pt x 38.11594pt on input line 577.
+./main.tex:581: Undefined control sequence.
+l.581 \tab
+           Each algorithm has been compared by execution time, and success r...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 581.
+(/usr/share/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 581.
+
+Underfull \hbox (badness 2088) in paragraph at lines 581--583
+\OT1/ptm/m/n/10 the hy-per-pa-ram-e-ters of one can dras-ti-cally im-prove its
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--583
+
+ []
+
+[2 <./mnist_example.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 584--586
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--589
+
+ []
+
+./main.tex:590: Undefined control sequence.
+l.590 \tab
+           The bar diagrams showed in figure 3 and 4 clearly show that ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 684.
+(Font)              <8> on input line 745.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 684.
-<picture.png, id=14, 84.315pt x 98.3675pt>
+(Font)              <6> on input line 745.
+<picture.png, id=24, 84.315pt x 98.3675pt>
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 700. on input line 700.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 700.
+Package pdftex.def Info: picture.png  used on input line 761. on input line 761.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 761.
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 700. on input line 700.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 700.
- [2 <./picture.png>] (./main.aux) ) 
+Package pdftex.def Info: picture.png  used on input line 761. on input line 761.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 761.
+[3 <./picture.png> <./orl.jpg>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2304 strings out of 492985
- 36436 string characters out of 6138637
- 100205 words of memory out of 5000000
- 5854 multiletter control sequences out of 15000+600000
- 39835 words of font info for 73 fonts, out of 8000000 for 9000
+ 2348 strings out of 492985
+ 37027 string characters out of 6138637
+ 99221 words of memory out of 5000000
+ 5887 multiletter control sequences out of 15000+600000
+ 41383 words of font info for 78 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  41i,10n,37p,631b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (2 pages, 105269 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (3 pages, 176343 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 
