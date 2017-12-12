@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1513097977 "main.tex" "main.pdf" "main" 1513097977
+["pdflatex"] 1513099207 "main.tex" "main.pdf" "main" 1513099207
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1510784341 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -17,6 +17,9 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1510784344 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1510784344 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1510784344 1120 8b7d695260f3cff42e636090a8002094 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1510784334 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1510784334 36281 c355509802a035cadc5f15869451dcee ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1510784334 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1510784334 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1510784331 44729 811d6c62865936705a31c797a1d5dada ""
   "/usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb" 1510784331 44656 0cbca70e0534538582128f6b54593cca ""
@@ -53,8 +56,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512469076 2399468 cd50ac8978eb0c6504f5f6da528ede46 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1510828241 7736839 f7a91338fb39ebea778d5e686e1a4943 ""
   "IEEEtran.cls" 1412935638 202657 f6698b073bb6e66a6e6436a00d85499c ""
-  "main.aux" 1513096747 1247 13a0eaf7347ebf7c5eeaa40718487999 ""
-  "main.tex" 1513097977 29587 5cf663429a3edf92889be0625451a692 ""
+  "main.aux" 1513099058 1247 3229973a9a4e86f7fef5c3271e6fd6f3 ""
+  "main.tex" 1513099205 30372 9ffedc05e84af2ea58f98cdddb34e946 ""
   "picture.png" 1412935638 14848 03aea4a00da11fd0cb69b384b3655503 ""
   (generated)
   "main.log"

@@ -505,10 +505,16 @@ In order to establish a benchmark for these classifiers, their computation time 
 The methods, or classification algorithms in this case, will be described and explained in this section.
 
 \subsection{Nearest Centroid Classifier}
-This first algorithm is rudimentary and very simple to understand. Firstly, during the training phase, a mean vector is calculated for each class, by averaging all the training samples of the given class. Then, in the classification phase, each test sample is classified by calculating its euclidean distance to each mean vector: the lowest distance indicates the nearest class for the test element. The euclidean distance formula is: INSERT FORMULA HERE \\ with xn being the tested sample and mc the mean vector of class c. The distance is calculated via the l-norm of the substraction of the two vectors, to the power of two.
+This first algorithm is rudimentary and very simple to understand. Firstly, during the training phase, a mean vector is calculated for each class, by averaging all the training samples of the given class. Then, in the classification phase, each test sample is classified by calculating its euclidean distance to each mean vector: the lowest distance indicates the nearest class for the test element. The euclidean distance formula is: 
+\begin{equation}
+  ||x_{n} - m_{c}||_{2}^2
+\end{equation}
+with $x_{n}$ being the tested sample of index $n$, and $m_{c}$ the mean vector of class $c$. The distance is calculated via the $l_{2}$-norm of the substraction of the two vectors, to the power of two.
 
 \subsection{Nearest Sub-class Centroid Classifier}
-\blindtext
+This classifier is basically an enhanced version of the Nearest Centroid Classifier, where the K-means algorithm has been applied in the training phase. This results in a clustered class, which holds N mean vectors corresponding to N sub-classes (clusters) instead of just one mean class vector. The number of sub-classes N is, theoretically, giving better and more accurate results for a higher value, as it yields more choices for the testing phase.
+
+\tab The classification of elements is done the same way as for the Nearest Centroid, however each test sample is compared to each mean sub-class vector of each class. The number of sub-classes is to be fine-tuned empirically, depending on the desired precision/speed ratio.
 
 \subsection{Nearest Neighbour Classifier}
 \blindtext
