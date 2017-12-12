@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS  = -g -Wall -std=c++11 -O3 -march=native -ffast-math -funroll-loops -ggdb3 -pthread -lm -lpthread
+CFLAGS  = -g -Wall -std=c++11 -O3 -march=native -funroll-loops -mfpmath=sse -lm -lpthread
 
 default: OptimizationAlgorithms
 

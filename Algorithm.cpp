@@ -109,8 +109,6 @@ double Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     std::map<int, Eigen::MatrixXd> sub_classes;
     std::map<int, std::vector<Eigen::VectorXd>> mean_vectors; /* class -> mean vector */
 
-    Eigen::IOFormat fmt(2, Eigen::DontAlignCols, "\t", " ", "", "", "", "");
-
     std::cout << "\t-> Building mean class vectors (" << nbSubClasses << " subclasses)..." << std::endl;
     for (auto const& training_class : input_data->getTrainingElements()) {
         mean_vectors[training_class.first].resize(nbSubClasses);
@@ -121,7 +119,7 @@ double Algorithm::nearestSubClassCentroid(int nbSubClasses) {
 
         /* Init sub classes vectors */
         for (int i = 0; i < nbSubClasses; i++) {
-            sub_classes[i].resize(input_data->getVectorSize(), 0);
+            sub_classes[i].resize(input_data->getVectorSize(), 1);
             sub_classes[i].setZero();
         }
 
@@ -140,8 +138,11 @@ double Algorithm::nearestSubClassCentroid(int nbSubClasses) {
                         lowestDistanceSubClass = i;
                     }
                 }
-                sub_classes[lowestDistanceSubClass].conservativeResize(Eigen::NoChange, sub_classes[lowestDistanceSubClass].cols() + 1);
-                sub_classes[lowestDistanceSubClass].col(sub_classes[lowestDistanceSubClass].cols() - 1) = training_element.data;
+
+				if (!sub_classes[lowestDistanceSubClass].col(sub_classes[lowestDistanceSubClass].cols() - 1).isZero())
+                	sub_classes[lowestDistanceSubClass].conservativeResize(Eigen::NoChange, sub_classes[lowestDistanceSubClass].cols() + 1);
+
+				sub_classes[lowestDistanceSubClass].col(sub_classes[lowestDistanceSubClass].cols() - 1) = training_element.data;
             }
             
             /* Check mean vectors movement: if the distance between the last iteration and this one is outside
@@ -192,21 +193,24 @@ double Algorithm::threadedNearestNeighbour() {
     clock_t begin = clock();
 
     std::vector<std::thread> workers;
-    int from, to;
+    unsigned long from, to;
+	int percentage = 0;
+	std::vector<DataInput::Element> &test_elements = input_data->getTestingElements();
+	long test_elements_count = test_elements.size();
     for (int i = 0; i < 4; i++) {
-    from = input_data->getTestingElements().size() / 4 * i;
-    to = from + input_data->getTestingElements().size() / 4;
-    workers.push_back(std::thread([this, from, to]() {
-	for (int i = from; i < to; i++) {
-	    DataInput::Element &testing_element = input_data->getTestingElements().at(i);
+    from = test_elements_count / 4 * i;
+    to = from + test_elements_count / 4;
+    workers.emplace_back(std::thread([this, from, to, &test_elements, test_elements_count]() {
+	for (unsigned long j = from; j < to; j++) {
+		std::cout << "Testing sample " << j << "/" << test_elements_count << std::endl;
 	    double lowestDistance = -1;
 	    for (auto const& training_class : input_data->getTrainingElements()) {
 		for (auto  const& training_element : training_class.second) {
-		    double distance = pow(Eigen::VectorXd(testing_element.data - training_element.data).norm(), 2);
+		    double distance = pow(Eigen::VectorXd(test_elements[j].data - training_element.data).norm(), 2);
 
 		    if (distance < lowestDistance || lowestDistance == -1) {
 			lowestDistance = distance;
-			testing_element.given_class = training_class.first;
+			test_elements[j].given_class = training_class.first;
 		    }
 		}
 	    }
