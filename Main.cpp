@@ -18,7 +18,7 @@ int main(int argc, char  **argv) {
 	/*std::cout << "--- Using ORL dataset: PCA version ---" << std::endl << std::endl;
 
 	ORLData *facesForPCA = new ORLData(40, 30, 40, 400);
-	facesForPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+	facesForPCA->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 	
 	Algorithm algoAPCA(facesForPCA);
 	algoAPCA.applyPCA();
@@ -40,7 +40,7 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
 	ORLData *faces = new ORLData(40, 30, 40, 400);
-	faces->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 
 	Algorithm algoA(faces);
 	orl_originalExecTimes.push_back(algoA.nearestClassCentroid());
@@ -63,14 +63,14 @@ int main(int argc, char  **argv) {
 	firstCSV.push_back(orl_pcaScores);
 	firstCSV.push_back(orl_pcaExecTimes);
 
-	Algorithm::generateCSV("scored_and_times_ORL.csv", firstCSV);
+	Algorithm::generateCSV("scores_and_times_ORL.csv", firstCSV);
 
 	int ch = std::cin.get();
 */
 	std::cout << "--- Using MNIST dataset: PCA ---" << std::endl << std::endl;
 	
 	MNISTData *digitsPCA = new MNISTData(10, 28, 28);
-	digitsPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
+	digitsPCA->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoBPCA(digitsPCA);
 	algoBPCA.applyPCA();
@@ -92,7 +92,7 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 
 	MNISTData *digits = new MNISTData(10, 28, 28);
-	digits->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
+	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoB(digits);
 	mnist_originalExecTimes.push_back(algoB.nearestClassCentroid());
@@ -115,7 +115,7 @@ int main(int argc, char  **argv) {
 	secondCSV.push_back(mnist_pcaScores);
 	secondCSV.push_back(mnist_pcaExecTimes);
 
-	Algorithm::generateCSV("scored_and_times_MNIST.csv", secondCSV);
+	Algorithm::generateCSV("scores_and_times_MNIST.csv", secondCSV);
 
 	return 0;
 }

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1513099207 "main.tex" "main.pdf" "main" 1513099207
+["pdflatex"] 1513101807 "main.tex" "main.pdf" "main" 1513101807
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1510784341 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -56,8 +56,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512469076 2399468 cd50ac8978eb0c6504f5f6da528ede46 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1510828241 7736839 f7a91338fb39ebea778d5e686e1a4943 ""
   "IEEEtran.cls" 1412935638 202657 f6698b073bb6e66a6e6436a00d85499c ""
-  "main.aux" 1513099058 1247 3229973a9a4e86f7fef5c3271e6fd6f3 ""
-  "main.tex" 1513099205 30372 9ffedc05e84af2ea58f98cdddb34e946 ""
+  "main.aux" 1513101589 1247 13a0eaf7347ebf7c5eeaa40718487999 ""
+  "main.tex" 1513101806 30970 133a873eee697acb05c7eab8bb206f91 ""
   "picture.png" 1412935638 14848 03aea4a00da11fd0cb69b384b3655503 ""
   (generated)
   "main.log"
