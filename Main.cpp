@@ -10,7 +10,7 @@
 int main(int argc, char  **argv) {
 
 	srand((unsigned) time(NULL));
-/*
+
 
 	std::cout << "--- Using ORL dataset: PCA version ---" << std::endl << std::endl;
 
@@ -24,21 +24,23 @@ int main(int argc, char  **argv) {
 	algoAPCA.nearestSubClassCentroid(3);
 	algoAPCA.nearestSubClassCentroid(5);
 	algoAPCA.threadedNearestNeighbour();
-*/
+	algoAPCA.perceptronBPG();
+	algoAPCA.perceptronMSE();
+
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
 	ORLData *faces = new ORLData(40, 30, 40, 400);
 	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
 
 	Algorithm algoA(faces);
-	/*algoA.nearestClassCentroid();
+	algoA.nearestClassCentroid();
 	algoA.nearestSubClassCentroid(2);
 	algoA.nearestSubClassCentroid(3);
 	algoA.nearestSubClassCentroid(5);
-	algoA.threadedNearestNeighbour();*/
-	//algoA.perceptronMSE();
+	algoA.threadedNearestNeighbour();
 	algoA.perceptronBPG();
-/*
+	algoA.perceptronMSE();
+
 	int ch = std::cin.get();
 
 	std::cout << "--- Using MNIST dataset: PCA ---" << std::endl << std::endl;
@@ -53,8 +55,8 @@ int main(int argc, char  **argv) {
 	algoBPCA.nearestSubClassCentroid(3);
 	algoBPCA.nearestSubClassCentroid(5);
 	algoBPCA.threadedNearestNeighbour();
-*/
-
+	algoBPCA.perceptronBPG();
+	algoBPCA.perceptronMSE();
 
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 
@@ -62,13 +64,13 @@ int main(int argc, char  **argv) {
 	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
 
 	Algorithm algoB(digits);
-	/*algoB.nearestClassCentroid();
+	algoB.nearestClassCentroid();
 	algoB.nearestSubClassCentroid(2);
 	algoB.nearestSubClassCentroid(3);
 	algoB.nearestSubClassCentroid(5);
-	algoB.threadedNearestNeighbour();*/
-	//algoB.perceptronMSE();
+	algoB.threadedNearestNeighbour();
 	algoB.perceptronBPG();
+	algoB.perceptronMSE();
 
 
 	return 0;

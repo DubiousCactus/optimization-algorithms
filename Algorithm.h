@@ -39,7 +39,9 @@ class Algorithm {
 		void threadedNearestNeighbour();
 		void perceptronBPG(); //Back-propagation
 		void perceptronMSE(); //Minimal Square Error
-		void generateCSV(); /* Generate a CSV file to plot it in Matlab */
+
+		template<class T>
+		void generateCSV(std::string fileName, std::vector<std::vector<T> > rows); /* Generate a CSV file to plot it in Matlab */
 		float calculateAccuracy();
 };
 

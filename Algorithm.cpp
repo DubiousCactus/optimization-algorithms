@@ -8,6 +8,9 @@
 #include "Algorithm.h"
 #include <math.h>
 #include <thread>
+#include <fstream>
+#include <iostream>
+#include <string>
 #include "Eigen/Eigenvalues"
 
 Algorithm::Algorithm(MNISTData *data) {
@@ -22,8 +25,19 @@ Algorithm::~Algorithm() {
     delete input_data;
 }
 
-void Algorithm::generateCSV() {
+template <class T>
+void Algorithm::generateCSV(std::string fileName, std::vector<std::vector<T> > rows) {
+    std::ofstream csvFile;
+    csvFile.open(fileName);
 
+    for (auto const &row : rows) {
+	for (auto const &value : row) {
+	    csvFile << value << ",";
+	}
+	csvFile << "\n";
+    }
+
+    csvFile.close();
 }
 
 float Algorithm::calculateAccuracy() {
