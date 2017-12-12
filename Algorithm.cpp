@@ -329,38 +329,40 @@ void Algorithm::train_perceptrons_BPG(Eigen::MatrixXd &weights) {
     }
 
     std::vector<int> misclassified_elements; //Row indexes of the criterion function
+    misclassified_elements.push_back(1); //Add a value to start the loop
     Eigen::MatrixXd criterion_function(input_data->getNbClasses(), input_data->getNbTrainingElements());
     criterion_function.setZero();
 
-    c = 200;
+    c = 200; //Safety counter: stop if still misclassified elements anyway
     /* Iterate while there are misclassified elements and counter not equal to zero */
     while (!misclassified_elements.empty() && c--) {
-	/* Empty the misclassified elements */
-	misclassified_elements.clear();
-
 	/* Update the criterion function */
 	for (int i = 0; i < input_data->getNbTrainingElements(); i++)
 	    criterion_function.col(i) = outputVectors.col(i).cwiseProduct(weights.transpose() * augmented_data.col(i));
 
+	int n = 0;
 	for (int i = 0; i < input_data->getNbClasses(); i++) {
+	    /* Empty the misclassified elements */
+	    misclassified_elements.clear();
+
 	    /* Find all misclassified elements */
-	    for (int j = 0; j < criterion_function.rows(); j++)
-		for (int k = 0; j < criterion_function.cols(); j++)
-		    if (criterion_function(j, k) < 0) //Misclassified !
-			misclassified_elements.push_back(k); //Add the row index to the list
+	    for (int k = 0; k < criterion_function.cols(); k++)
+		if (criterion_function(n, k) < 0) //Misclassified !
+		    misclassified_elements.push_back(k); //Add the col index to the list
 
-	    /* Calculate the gradiant and update the weights */
-	    Eigen::VectorXd gradiant;
-	    gradiant.setZero();
+	    /* Calculate the gradient and update the weights */
+	    Eigen::VectorXd gradient(weights.rows());
+	    gradient.setZero();
 
-	    int k = 0;
 	    for (auto const &misclassified_element : misclassified_elements)
-		gradiant += misclassified_element * outputVectors.row(k++);
+		gradient += augmented_data.col(misclassified_element) * outputVectors(n, misclassified_element);
 
-	    gradiant *= LEARNING_RATE;
+	    gradient *= LEARNING_RATE;
 
 	    /* Update the weights */
-	    weights.col(i) += gradiant;
+	    weights.col(n) += gradient;
+
+	    n++; //Next class index (don't use i because of the offset of ORL
 	}
     }
 }
