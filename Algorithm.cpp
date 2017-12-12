@@ -11,6 +11,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "Eigen/Eigenvalues"
 
 Algorithm::Algorithm(MNISTData *data) {
@@ -25,8 +26,7 @@ Algorithm::~Algorithm() {
     delete input_data;
 }
 
-template <class T>
-void Algorithm::generateCSV(std::string fileName, std::vector<std::vector<T> > rows) {
+void Algorithm::generateCSV(std::string fileName, std::vector<std::vector<double> > rows) {
     std::ofstream csvFile;
     csvFile.open(fileName);
 
@@ -40,8 +40,8 @@ void Algorithm::generateCSV(std::string fileName, std::vector<std::vector<T> > r
     csvFile.close();
 }
 
-float Algorithm::calculateAccuracy() {
-    float positives = 0;
+double Algorithm::calculateAccuracy() {
+    double positives = 0;
 
     for (auto const &element : input_data->getTestingElements())
 	if (element.label == element.given_class)
@@ -52,8 +52,9 @@ float Algorithm::calculateAccuracy() {
     return positives;
 }
 
-void Algorithm::nearestClassCentroid() {
+double Algorithm::nearestClassCentroid() {
     std::cout << "* Running nearest class centroid" << std::endl;
+    clock_t begin = clock();
     /* Training part: construct the mean vector of each class */
     std::map<int, Eigen::VectorXd> mean_class_vectors;
 
@@ -91,13 +92,16 @@ void Algorithm::nearestClassCentroid() {
 	/* Classify the element by setting its label to the best match */
 	element.given_class = optimumClass;
     }
-	
+
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
-void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
+double Algorithm::nearestSubClassCentroid(int nbSubClasses) {
     std::cout << "* Running nearest sub-class centroid" << std::endl;
-    
+    clock_t begin = clock();
     /* Training part: apply K-means on the training data to find sub classes */
     bool iterate;
     double lowestDistance;
@@ -176,12 +180,16 @@ void Algorithm::nearestSubClassCentroid(int nbSubClasses) {
         /* Classify the element by setting its label to the best match */
         element.given_class = optimumClass;
     }
-	
+    
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
-void Algorithm::threadedNearestNeighbour() {
+double Algorithm::threadedNearestNeighbour() {
     std::cout << "* Running threaded nearest neighbour..." << std::endl;
+    clock_t begin = clock();
 
     std::vector<std::thread> workers;
     int from, to;
@@ -210,13 +218,17 @@ void Algorithm::threadedNearestNeighbour() {
     {
         t.join();
     });
-	
+    
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
 
-void Algorithm::nearestNeighbour() {
+double Algorithm::nearestNeighbour() {
     std::cout << "* Running nearest neighbour..." << std::endl;
+    clock_t begin = clock();
     long n = 0;
 
     for (auto &testing_element : input_data->getTestingElements()) {
@@ -234,7 +246,10 @@ void Algorithm::nearestNeighbour() {
 	n++;
     }
 
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
 
@@ -410,76 +425,84 @@ void Algorithm::classify_perceptrons_BPG(Eigen::MatrixXd weights) {
     }
 }
 
-void Algorithm::perceptronBPG() {
+double Algorithm::perceptronBPG() {
     std::cout << "* Running a neural network of perceptrons using Back-Propagation..." << std::endl;
+    clock_t begin = clock();
 
     Eigen::MatrixXd weights;
     train_perceptrons_BPG(weights);
     classify_perceptrons_BPG(weights);
 
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
 
-void Algorithm::perceptronMSE() {
+double Algorithm::perceptronMSE() {
     std::cout << "* Running a neural network of perceptrons using Minimal Square Error..." << std::endl;
+    clock_t begin = clock();
 
     Eigen::MatrixXd weights;
     train_perceptrons_MSE(weights);
     classify_perceptrons_MSE(weights);
 
+    clock_t end = clock();
     std::cout << std::endl << "* Done ! => Accuracy: " << calculateAccuracy() * 100 << "%" << std::endl << std::endl;
+    
+    return double(end - begin) / CLOCKS_PER_SEC;
 }
 
 void Algorithm::applyPCA() {
-	std::cout << "* Applying PCA..." << std::endl;
+    std::cout << "* Applying PCA..." << std::endl;
 
-	Eigen::MatrixXd D;
-	D.resize(input_data->getVectorSize(), 0);
-	int i = 0;
+    Eigen::MatrixXd D;
+    D.resize(input_data->getVectorSize(), 0);
+    int i = 0;
 
-	/* Join all training samples to one matrix */
-	for (auto const& training_class : input_data->getTrainingElements()) {
-	    for (auto const &element : training_class.second) {
-		D.conservativeResize(Eigen::NoChange, D.cols() + 1);
-		D.col(D.cols() - 1) = element.data;
-	    }
+    /* Join all training samples to one matrix */
+    for (auto const& training_class : input_data->getTrainingElements()) {
+	for (auto const &element : training_class.second) {
+	    D.conservativeResize(Eigen::NoChange, D.cols() + 1);
+	    D.col(D.cols() - 1) = element.data;
 	}
+    }
 
-	// 1. Compute the mean image
-	training_data_mean_vector = D.rowwise().mean().transpose();
+    // 1. Compute the mean image
+    training_data_mean_vector = D.rowwise().mean().transpose();
 
-	// 2. Subtract mean image from the data set to get mean centered data vector
-	Eigen::MatrixXd centered(D.colwise() - training_data_mean_vector);
+    // 2. Subtract mean image from the data set to get mean centered data vector
+    Eigen::MatrixXd centered(D.colwise() - training_data_mean_vector);
 
-	// 3. Compute the covariance matrix from the mean centered data matrix
-	Eigen::MatrixXd covariance = centered * centered.transpose();
+    // 3. Compute the covariance matrix from the mean centered data matrix
+    Eigen::MatrixXd covariance = centered * centered.transpose();
 
-	// 4. Calculate the eigenvalues and eigen vectors for the covariance matrix
-	Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eig(covariance);
-	Eigen::MatrixXd eigenVectors = eig.eigenvectors();
-	Eigen::VectorXd eigenValues = eig.eigenvalues();
+    // 4. Calculate the eigenvalues and eigen vectors for the covariance matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eig(covariance);
+    Eigen::MatrixXd eigenVectors = eig.eigenvectors();
+    Eigen::VectorXd eigenValues = eig.eigenvalues();
 
-	/* Make a matrix of the two last (sorted) eigen vectors */
-	Eigen::MatrixXd pca_matrix(eigenVectors.row(eigenValues.size() - 1).transpose().rows(), 2);
-	pca_matrix.col(0) = eigenVectors.row(eigenValues.size() - 1).transpose();
-	pca_matrix.col(1) = eigenVectors.row(eigenValues.size() - 2).transpose();
-	
-	training_data_eigen_vectors = pca_matrix;
+    /* Make a matrix of the two last (sorted) eigen vectors */
+    Eigen::MatrixXd pca_matrix(eigenVectors.row(eigenValues.size() - 1).transpose().rows(), 2);
+    pca_matrix.col(0) = eigenVectors.row(eigenValues.size() - 1).transpose();
+    pca_matrix.col(1) = eigenVectors.row(eigenValues.size() - 2).transpose();
+    
+    training_data_eigen_vectors = pca_matrix;
 
-	/* Apply PCA */
-	for (auto &training_class : input_data->getTrainingElementsRef())
-	    for (auto &training_element : training_class.second)
-		training_element.data = pca_matrix.transpose() * training_element.data;
+    /* Apply PCA */
+    for (auto &training_class : input_data->getTrainingElementsRef())
+	for (auto &training_element : training_class.second)
+	    training_element.data = pca_matrix.transpose() * training_element.data;
 
-	/* Normalize testing data */
-	for (auto &testing_element : input_data->getTestingElements()) {
-	    testing_element.data = testing_element.data - training_data_mean_vector;
-	    testing_element.data = pca_matrix.transpose() * testing_element.data;
-	}
+    /* Normalize testing data */
+    for (auto &testing_element : input_data->getTestingElements()) {
+	testing_element.data = testing_element.data - training_data_mean_vector;
+	testing_element.data = pca_matrix.transpose() * testing_element.data;
+    }
 
-	input_data->setWidth(1);
-	input_data->setHeight(2);
+    input_data->setWidth(1);
+    input_data->setHeight(2);
 
-	std::cout << "* PCA applied !" << std::endl << std::endl;
+    std::cout << "* PCA applied !" << std::endl << std::endl;
 }

@@ -33,16 +33,14 @@ class Algorithm {
 		~Algorithm();
 
 		void applyPCA(); /* Generate 2D data based on the input_data */
-		void nearestClassCentroid();
-		void nearestSubClassCentroid(int nbSubClasses);
-		void nearestNeighbour();
-		void threadedNearestNeighbour();
-		void perceptronBPG(); //Back-propagation
-		void perceptronMSE(); //Minimal Square Error
-
-		template<class T>
-		void generateCSV(std::string fileName, std::vector<std::vector<T> > rows); /* Generate a CSV file to plot it in Matlab */
-		float calculateAccuracy();
+		double nearestClassCentroid();
+		double nearestSubClassCentroid(int nbSubClasses);
+		double nearestNeighbour();
+		double threadedNearestNeighbour();
+		double perceptronBPG(); //Back-propagation
+		double perceptronMSE(); //Minimal Square Error
+		static void generateCSV(std::string fileName, std::vector<std::vector<double> > rows); /* Generate a CSV file to plot it in Matlab */
+		double calculateAccuracy();
 };
 
 #endif
