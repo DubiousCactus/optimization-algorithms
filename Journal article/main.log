@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 16:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 17:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -211,41 +211,59 @@ I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
+./main.tex:491: Undefined control sequence.
+l.491 \tab
+           This study focuses on classification of two sets of images: the M...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:493: Undefined control sequence.
+l.493 \tab
+           The following optimization algorithms will be applied on the said...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 653.
+(Font)              <7> on input line 495.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 653.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 653.
+(Font)              <5> on input line 495.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<picture.png, id=10, 84.315pt x 98.3675pt>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 678.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 678.
+<picture.png, id=11, 84.315pt x 98.3675pt>
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 669. on input line 669.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 669.
+Package pdftex.def Info: picture.png  used on input line 694. on input line 694.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 694.
 File: picture.png Graphic file (type png)
 <use picture.png>
-Package pdftex.def Info: picture.png  used on input line 669. on input line 669.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 669.
- [2
-
- <./picture.png>] (./main.aux) ) 
+Package pdftex.def Info: picture.png  used on input line 694. on input line 694.
+Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 694.
+ [2 <./picture.png>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2303 strings out of 492985
- 36422 string characters out of 6138637
- 99205 words of memory out of 5000000
- 5853 multiletter control sequences out of 15000+600000
+ 2304 strings out of 492985
+ 36436 string characters out of 6138637
+ 100205 words of memory out of 5000000
+ 5854 multiletter control sequences out of 15000+600000
  39835 words of font info for 73 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,10n,37p,624b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (2 pages, 69695 bytes).
+ 41i,10n,37p,638b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (2 pages, 81657 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 38 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

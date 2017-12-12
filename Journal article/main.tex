@@ -486,12 +486,37 @@
 
 
 \section{Introduction}
-\blindtext
+  The image classification problem is a very common case of study when it comes to machine learning and data analytics. There is a substential amount of different algorithms that can be used to treat this problem, however, the lack of computational power has slowed down the study of those. Nowadays, this is no longer a problem, as computers have become significantly faster than when these algorithms were thought and designed, and it is now a lot easier to compare them in depth. Machine learning is becoming a trend, and as it can be utilized on affordable hardware, it can be applied to a large variety of problems.
+  
+\tab This study focuses on classification of two sets of images: the MNIST dataset, which is a collection of 70000 images representing handwritten digits from 0 to 9, in grayscale, and the ORL dataset, containing 400 grayscale facial images, representing a total of 40 different individuals.
 
-\subsection{Image classification}
-\blindtext
+\tab The following optimization algorithms will be applied on the said data samples:
+\begin{itemize}
+  \item Nearest Centroid Classifier
+  \item Nearest Sub-class Centroid Classifier
+  \item Nearest Neighbour Classifier
+  \item Perceptron trained using Backpropagation
+  \item Perceptron trained using Mean Square Error
+\end{itemize}
+
+In order to establish a benchmark for these classifiers, their computation time and their accuracy will be compared, and they will be applied on the two datasets reduced to two dimensions after applying the Principal Component Analysis (PCA), which will also allow for the plotting of the results.
 
 \section{Methods}
+The methods, or classification algorithms in this case, will be described and explained in this section.
+
+\subsection{Nearest Centroid Classifier}
+This first algorithm is rudimentary and very simple to understand. Firstly, during the training phase, a mean vector is calculated for each class, by averaging all the training samples of the given class. Then, in the classification phase, each test sample is classified by calculating its euclidean distance to each mean vector: the lowest distance indicates the nearest class for the test element. The euclidean distance formula is: INSERT FORMULA HERE \\ with xn being the tested sample and mc the mean vector of class c. The distance is calculated via the l-norm of the substraction of the two vectors, to the power of two.
+
+\subsection{Nearest Sub-class Centroid Classifier}
+\blindtext
+
+\subsection{Nearest Neighbour Classifier}
+\blindtext
+
+\subsection{Perceptron trained using Backpropagation}
+\blindtext
+
+\subsection{Perceptron trained using Mean Square Error}
 \blindtext
 
 \section{Results}

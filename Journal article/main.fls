@@ -94,13 +94,6 @@ INPUT /usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmrc7t.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 OUTPUT main.pdf
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
@@ -119,6 +112,13 @@ INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT picture.png
 INPUT ./picture.png
 INPUT ./picture.png
@@ -133,6 +133,7 @@ INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT main.aux
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
