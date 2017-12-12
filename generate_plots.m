@@ -29,8 +29,8 @@ performance_ORL = performance_ORL(:,1:end-1);
 % line2: Dimension 1
 % line3: Dimension 2
 
-%data_pca_MNIST = dlmread('/path/to/pca_data_MNIST',',');
-%data_pca_ORL = dlmread('/path/to/pca_data_ORL',',');
+data_pca_MNIST = dlmread('mnist_pca.csv',',');
+data_pca_ORL = dlmread('orl_pca.csv',',');
 
 
 

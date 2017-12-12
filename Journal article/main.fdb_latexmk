@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1513115468 "main.tex" "main.pdf" "main" 1513115468
+["pdflatex"] 1513116167 "main.tex" "main.pdf" "main" 1513116167
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1510784341 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -67,8 +67,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512469076 2399468 cd50ac8978eb0c6504f5f6da528ede46 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1510828241 7736839 f7a91338fb39ebea778d5e686e1a4943 ""
   "IEEEtran.cls" 1412935638 202657 f6698b073bb6e66a6e6436a00d85499c ""
-  "main.aux" 1513115377 1593 4ecb418f5549f0942e51fdea6a3dd646 ""
-  "main.tex" 1513115466 36429 08e0124452c7ca7bf7f85b8b007c2cea ""
+  "main.aux" 1513116020 1593 4ecb418f5549f0942e51fdea6a3dd646 ""
+  "main.tex" 1513116165 37028 ce8e20574af6570d8d0d96d9203f3462 ""
   "mnist_example.png" 1513114555 10168 a1370bcd9c53c4e8b31176dabe91817d ""
   "orl.jpg" 1513114645 7150 aa6a10383a6fd26d4a1b64b5a412d52f ""
   "picture.png" 1412935638 14848 03aea4a00da11fd0cb69b384b3655503 ""
