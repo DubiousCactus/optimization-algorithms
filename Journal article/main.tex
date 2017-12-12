@@ -546,6 +546,12 @@ This last classifier is essentialy similar to the previous perceptron, except th
 \end{equation}
 with $\mathbf{X}$ the matrix of training sample vectors, and $\mathbf{b}$ containing the output labels for the training samples.
 
+\subsection{Principal Component Analysis}
+Dimensional reduction of the datasets can be useful for proving that a high amount of dimensions will result in an equaly high classification accuracy, by comparing the original data with a 2D version of it. Moreover, it makes the data plottable on an orthogonal space, and easy to visualize by emphasizing on the variation, which shows the strong patterns. In order to obtain the same data reduced to two dimensions, the Principal Component Analysis is applied to linearly transform it while keeping the most informative bits. The PCA transformation can be expressed as:
+\begin{equation}
+  y_i = \mathbf{W}^Tx_i
+\end{equation}
+with $\mathbf{W}$ being a matrix of ordered eigenvectors of the original matrix, that can be used partially to reduce the number of dimensions equal to the number of eigenvectors used, and with more or less variation depending on the order of the chosen latter.
 \section{Results}
 \blindtext
 
