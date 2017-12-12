@@ -194,7 +194,6 @@ double Algorithm::threadedNearestNeighbour() {
 
     std::vector<std::thread> workers;
     unsigned long from, to;
-	int percentage = 0;
 	std::vector<DataInput::Element> &test_elements = input_data->getTestingElements();
 	long test_elements_count = test_elements.size();
     for (int i = 0; i < 4; i++) {
@@ -202,7 +201,6 @@ double Algorithm::threadedNearestNeighbour() {
     to = from + test_elements_count / 4;
     workers.emplace_back(std::thread([this, from, to, &test_elements, test_elements_count]() {
 	for (unsigned long j = from; j < to; j++) {
-		std::cout << "Testing sample " << j << "/" << test_elements_count << std::endl;
 	    double lowestDistance = -1;
 	    for (auto const& training_class : input_data->getTrainingElements()) {
 		for (auto  const& training_element : training_class.second) {
