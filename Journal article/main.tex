@@ -520,7 +520,23 @@ This classifier is basically an enhanced version of the Nearest Centroid Classif
 The last euclidean distance-based classifier, Nearest Neighbour, is the most time-consuming and resource-demanding algorithm, but in theory one of the most accurates. This classification method demands no training phase, as the classification process is very straight-forward. To classify a test sample, its distance to each individual training sample is computed using the euclidean distance, and the lowest is then used to give it the class of the training element, accordingly. This algorithm doesn't introduce any interesting aspects in terms of classification, but is still interesting to use for comparison ends.
 
 \subsection{Perceptron trained using Backpropagation}
+A perceptron is a linear discriminant method of classification, that uses a discriminant function to determine wether a sample is belonging to a given class or not: it is a binary classifier. As one perceptron can only be used for one given class, several of them will be used to form a neural network, that will them be fed input data such as the aforementioned ORL image vectors, in order to train each perceptron to accept its given class and to reject every other. The discriminant function can be represented as:
+\begin{equation}
+  g(X)=W^TX+\omega_{0}
+\end{equation}
+with $W$ being the weights vector, and $\omega_{0}$ the bias, together constituting the discriminant. When the result of this function is above 0, the given $X$ vector can be classified as belonging to the perceptron's class, otherwise it doesn't.
 
+\tab During the training phase, the weight vectors have to be computed in the optimal way, so that they will be able to classify an input with the best success rate. In order to do so, a perceptron is fed with input vectors belonging to all the classes of the training set, and the following criterion function is used to update the weights vector of one perceptron:
+\begin{equation}
+  \mathcal{J}_p(W)=\underset{x_{i}\in\chi}{\sum}-l_{i}\overset{~}{W}^TX_{i}
+\end{equation}
+with $\chi$ being the set of misclassified samples for the perceptron, $l_i$ being the binary label of the misclassified sample, $\overset{~}{W}$ corresponding to the augmented weights vector, and $\overset{~}{X_{i}}$ the misclassidied training sample. This optimization problem can be solved using the gradient descent method as follow:
+\begin{equation}
+  W(t+1)=W(t)+\eta\underset{x_{i}\in\chi}{\sum}-l_{i}X_{i}
+\end{equation}
+with $\eta$ being the learning rate, which defines the step size of the gradient descent, also referred to as hyperparameter.
+
+\tab Finally, during the classification phase, the aforementioned function $g(X)$ is applied to each input vector, and the binary result is used to determine which class the input sample belongs to.
 
 \subsection{Perceptron trained using Mean Square Error}
 \blindtext
