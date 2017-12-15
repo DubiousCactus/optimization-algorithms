@@ -18,7 +18,7 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using ORL dataset: PCA version ---" << std::endl << std::endl;
 
 	ORLData *facesForPCA = new ORLData(40, 30, 40, 400);
-	facesForPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/ORL");
+	facesForPCA->loadDirectory("../DataSets/ORL");
 	
 	Algorithm algoAPCA(facesForPCA);
 	algoAPCA.applyPCA();
@@ -41,7 +41,7 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using ORL dataset ---" << std::endl << std::endl;
 
 	ORLData *faces = new ORLData(40, 30, 40, 400);
-	faces->loadDirectory("/home/transpalette/Code/optimization-algorithms/ORL");
+	faces->loadDirectory("../DataSets/ORL");
 
 	Algorithm algoA(faces);
 	orl_originalExecTimes.push_back(algoA.nearestClassCentroid());
@@ -70,7 +70,7 @@ int main(int argc, char  **argv) {
 	
 	int ch = std::cin.get();
 	MNISTData *digitsPCA = new MNISTData(10, 28, 28);
-	digitsPCA->loadDirectory("/home/transpalette/Code/Optimization_Project/MNIST"); //Use full path
+	digitsPCA->loadDirectory("../DataSets/MNIST"); //Use full path
 
 	Algorithm algoBPCA(digitsPCA);
 	algoBPCA.applyPCA();
@@ -92,7 +92,7 @@ int main(int argc, char  **argv) {
 	std::cout << "--- Using MNIST dataset ---" << std::endl << std::endl;
 
 	MNISTData *digits = new MNISTData(10, 28, 28);
-	digits->loadDirectory("/home/transpalette/Code/optimization-algorithms/MNIST"); //Use full path
+	digits->loadDirectory("../DataSets/MNIST"); //Use full path
 
 	Algorithm algoB(digits);
 	mnist_originalExecTimes.push_back(algoB.nearestClassCentroid());

@@ -22,4 +22,4 @@ datainput:	DataInput/DataInput.h
 			$(CC) $(CFLAGS) -c DataInput/DataInput.h
 
 clean:	
-	$(RM) -r count */*.o *~
+	$(RM) -r count *.o  */*.o *~ OptimizationAlgorithms
