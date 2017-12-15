@@ -557,45 +557,55 @@ Dimensional reduction of the datasets can be useful for proving that a high amou
   y_i = \mathbf{W}^\topx_i
 \end{equation}
 with $\mathbf{W}$ being a matrix of ordered eigenvectors of the original matrix, that can be used partially to reduce the number of dimensions equal to the number of eigenvectors used, and with more or less variation depending on the order of the chosen latter.
+\begin{figure}[htbp]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/mnist_pca_plot.eps}}
+  \caption{MNIST dataset after applying PCA}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/orl_pca_plot.eps}}
+  \caption{ORL Data set after applying PCA}
+\end{figure}
 
 
 \section{Results}
 As stated previously, each algorithm has been applied to the MNIST and ORL datasets. It is important to know that the MNIST dataset comes already split in training data (60000 samples) and test data (10000 samples), whereas the ORL dataset had to be manually and randomly split in 70\% training samples and 30\% test samples.
 
 \tab The MNIST dataset is composed of 70000 pictures of handwritten digits in grayscale, from 0 to 9, and with an image resolution of 28x28.
-\begin{figure}
+\begin{figure}[htbp]
   \centering
-    \reflectbox{%
       \includegraphics[width=0.5\textwidth]{mnist_example.png}}
   \caption{MNIST dataset sample}
 \end{figure}
 
 \tab The ORL dataset consists of 400 facial pictures, for it contains 10 pictures for each of the 40 persons, thus giving 40 classes.
-\begin{figure}
+\begin{figure}[htbp]
   \centering
-    \reflectbox{%
       \includegraphics[width=0.4\textwidth]{orl.jpg}}
   \caption{ORL dataset sample}
 \end{figure}
 
 \tab Each algorithm has been compared by execution time, and success rate (or accuracy). It can be seen that changing the hyperparameters of one can drastically improve its success rate, as the Nearest Sub-class Centroid Classifier shows for instance, with the given hyperparameters \{2,3,5\} corresponding to the number of sub-classes. The learning rate for the backpropagation algorithm has been set to 0.1, after experimentation and fine-tuning.
+
+\begin{figure}[htbp!]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/fig_ORL.eps}}
+      \caption{ORL success rates}
+\end{figure}
+
 \\
+\begin{figure}[htbp!]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/fig_MNIST.eps}}
+      \caption{MNIST success rates}
+\end{figure}
 
-INSERT MNIST SUCCESS RATE
-\\
 
-INSERT ORL SUCCESS RATE
-\\
+\tab The bar diagrams shown in figure 5 and 6 clearly demonstrate that most of the algorithms are more efficient and give slightly better results on the ORL dataset. It is also clear that the distance-based algorithms perform better than the perceptrons, and it is especially true for the Nearest Neighbour classifier, even though it is the slowest algorithm as shown in the following bar diagrams.
 
-\tab The bar diagrams shown in figure 3 and 4 clearly demonstrate that most of the algorithms are more efficient and give slightly better results on the ORL dataset. It is also clear that the distance-based algorithms perform better than the perceptrons, and it is especially true for the Nearest Neighbour classifier, even though it is the slowest algorithm as shown in the following bar diagrams.
 
-INSERT MNIST TIME CONSUMPTION
-\\
-
-INSERT ORL TIME CONSUMPTION
-\\
-
-\tab As it can be seen on figure 5 and 6, the execution time of the Nearest Neighbour is the highest, as stated above, while the other distance-based classifiers globally remain the fastest to compute. In general, each algorithm is slightly slower to execute on the MNIST dataset, compared to the ORL dataset, and this is due to the fact that it is substantially larger than the latter. 
+\tab As it can be seen on figure 7 and 8 of the conclusion section, the execution time of the Nearest Neighbour is the highest, as stated above, while the other distance-based classifiers globally remain the fastest to compute. In general, each algorithm is slightly slower to execute on the MNIST dataset, compared to the ORL dataset, and this is due to the fact that it is substantially larger than the latter. 
 
 \tab The follong figures show the tremendous accuracy and processing time reduction after applying PCA to the datasets, thus reducing their dimensions to only 2. It goes without saying that applying PCA only to reduce the data's dimensions to 2D doesn't serve any interest other than constating the huge loss of accuracy. However, as the reduction of dimensions greatly reduces the execution time, it can be interesting to experiment with the amount of dimensions that the data can be reduced to, in order to obtain acceptable success rates while profiting from the great time gain.
 
@@ -687,7 +697,24 @@ INSERT ORL TIME CONSUMPTION
 
 
 \section{Conclusion}
-\blindtext
+Finally, the algorithms' performances for both datasets can be visualized on the following graphs:
+\begin{figure}[htbp]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/comparison_performance.eps}}
+  \caption{Comparison of performance}
+\end{figure}
+
+\\
+\begin{figure}[htbp]
+  \centering
+      \includegraphics[width=0.5\textwidth]{plots/comparison_performance_pca.eps}}
+  \caption{Comparison of performance after applying PCA}
+\end{figure}
+These figures represent the execution time and the success rates of each algorithm for each dataset (see legend). Of course, the higher accuracy the better, but a low execution time is very important as well, for real life applications.
+
+
+
+\tab If more time was given for this project, it would have been a good thing to compare several iterations of the same algorithms for the ORL dataset for example, as the training samples and test samples are split randomly, thus resulting in very different results each time. Furthermore, this project was implemented in C++, and therefore took a lot more time than expected to be implemented, that is why the optimization has been set aside in order to obtain results quickly, and it would add a good value to work on the optimization, for example to make more use of threads (as it can be seen in the Nearest Neighbour Centroid) in every algorithm.
 
 
 
@@ -709,15 +736,7 @@ INSERT ORL TIME CONSUMPTION
 
 
 \appendices
-\section{Proof of the First Zonklar Equation}
-Some text for the appendix.
-
 % use section* for acknowledgement
-\section*{Acknowledgment}
-
-
-The authors would like to thank...
-
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
@@ -736,7 +755,6 @@ The authors would like to thank...
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
 % references section
-
 % can use a bibliography generated by BibTeX as a .bbl file
 % BibTeX documentation can be easily obtained at:
 % http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
@@ -749,13 +767,6 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
-
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\end{thebibliography}
 
 % biography section
 % 
@@ -768,8 +779,6 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 %\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
-\blindtext
 \end{IEEEbiography}
 
 % You can push biographies down or up by placing

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 23:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.16)  12 DEC 2017 23:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -350,8 +350,78 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./main.tex:565: Undefined control sequence.
-l.565 \tab
+Package epstopdf Info: Source file: <plots/mnist_pca_plot.eps>
+(epstopdf)                    date: 2017-12-12 23:04:49
+(epstopdf)                    size: 1204269 bytes
+(epstopdf)             Output file: <plots/mnist_pca_plot-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:41:02
+(epstopdf)                    size: 10712 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/mnist_pca_plot-eps-converted-to.pdf plots/mnist_pca_plot.eps>
+(epstopdf)             \includegraphics on input line 562.
+Package epstopdf Info: Output file is already uptodate.
+<plots/mnist_pca_plot-eps-converted-to.pdf, id=18, pagebox=cropbox, 1147.28625pt x 611.28375pt>
+File: plots/mnist_pca_plot-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/mnist_pca_plot-eps-converted-to.pdf>
+Package pdftex.def Info: plots/mnist_pca_plot-eps-converted-to.pdf  used on input line 562. on input line 562.
+Package pdftex.def Info: Requested size: 262.04987pt x 139.62225pt on input line 562.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 562--562
+ [][] 
+ []
+
+./main.tex:564: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.564 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:564: You can't use `\vadjust' in vertical mode.
+\end@float ...nalty \@floatpenalty \else \vadjust 
+                                                  {\penalty -\@Miv \vbox {}\...
+l.564 \end{figure}
+                  
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+Package epstopdf Info: Source file: <plots/orl_pca_plot.eps>
+(epstopdf)                    date: 2017-12-12 23:04:49
+(epstopdf)                    size: 40511 bytes
+(epstopdf)             Output file: <plots/orl_pca_plot-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:41:02
+(epstopdf)                    size: 11079 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/orl_pca_plot-eps-converted-to.pdf plots/orl_pca_plot.eps>
+(epstopdf)             \includegraphics on input line 567.
+Package epstopdf Info: Output file is already uptodate.
+<plots/orl_pca_plot-eps-converted-to.pdf, id=19, pagebox=cropbox, 1151.30125pt x 611.28375pt>
+File: plots/orl_pca_plot-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/orl_pca_plot-eps-converted-to.pdf>
+Package pdftex.def Info: plots/orl_pca_plot-eps-converted-to.pdf  used on input line 567. on input line 567.
+Package pdftex.def Info: Requested size: 262.04987pt x 139.13722pt on input line 567.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 567--567
+ [][] 
+ []
+
+./main.tex:569: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.569 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:575: Undefined control sequence.
+l.575 \tab
            The MNIST dataset is composed of 70000 pictures of handwritten di...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -359,18 +429,40 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<mnist_example.png, id=18, 421.575pt x 316.18124pt>
+[2 <./plots/mnist_pca_plot-eps-converted-to.pdf> <./plots/orl_pca_plot-eps-converted-to.pdf>]
+<mnist_example.png, id=34, 421.575pt x 316.18124pt>
 File: mnist_example.png Graphic file (type png)
 <use mnist_example.png>
-Package pdftex.def Info: mnist_example.png  used on input line 569. on input line 569.
-Package pdftex.def Info: Requested size: 262.04987pt x 196.54173pt on input line 569.
+Package pdftex.def Info: mnist_example.png  used on input line 578. on input line 578.
+Package pdftex.def Info: Requested size: 262.04987pt x 196.54173pt on input line 578.
 
-Overfull \hbox (9.0pt too wide) in paragraph at lines 569--570
+Overfull \hbox (9.0pt too wide) in paragraph at lines 578--578
  [][] 
  []
 
-./main.tex:573: Undefined control sequence.
-l.573 \tab
+./main.tex:580: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.580 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:580: You can't use `\vadjust' in vertical mode.
+\end@float ...nalty \@floatpenalty \else \vadjust 
+                                                  {\penalty -\@Miv \vbox {}\...
+l.580 \end{figure}
+                  
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./main.tex:582: Undefined control sequence.
+l.582 \tab
            The ORL dataset consists of 400 facial pictures, for it contains ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -378,13 +470,34 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<orl.jpg, id=19, 353.32pt x 64.24pt>
+<orl.jpg, id=35, 353.32pt x 64.24pt>
 File: orl.jpg Graphic file (type jpg)
 <use orl.jpg>
-Package pdftex.def Info: orl.jpg  used on input line 577. on input line 577.
-Package pdftex.def Info: Requested size: 209.63669pt x 38.11594pt on input line 577.
-./main.tex:581: Undefined control sequence.
-l.581 \tab
+Package pdftex.def Info: orl.jpg  used on input line 585. on input line 585.
+Package pdftex.def Info: Requested size: 209.63669pt x 38.11594pt on input line 585.
+./main.tex:587: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.587 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:587: You can't use `\vadjust' in vertical mode.
+\end@float ...nalty \@floatpenalty \else \vadjust 
+                                                  {\penalty -\@Miv \vbox {}\...
+l.587 \end{figure}
+                  
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./main.tex:589: Undefined control sequence.
+l.589 \tab
            Each algorithm has been compared by execution time, and success r...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -392,62 +505,105 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 581.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 589.
 (/usr/share/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 581.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 589.
+Package epstopdf Info: Source file: <plots/fig_ORL.eps>
+(epstopdf)                    date: 2017-12-12 23:42:34
+(epstopdf)                    size: 18608 bytes
+(epstopdf)             Output file: <plots/fig_ORL-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:44:15
+(epstopdf)                    size: 6554 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/fig_ORL-eps-converted-to.pdf plots/fig_ORL.eps>
+(epstopdf)             \includegraphics on input line 593.
+Package epstopdf Info: Output file is already uptodate.
+<plots/fig_ORL-eps-converted-to.pdf, id=36, pagebox=cropbox, 854.19125pt x 436.63126pt>
+File: plots/fig_ORL-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/fig_ORL-eps-converted-to.pdf>
+Package pdftex.def Info: plots/fig_ORL-eps-converted-to.pdf  used on input line 593. on input line 593.
+Package pdftex.def Info: Requested size: 262.04987pt x 133.9485pt on input line 593.
 
-Underfull \hbox (badness 2088) in paragraph at lines 581--583
-\OT1/ptm/m/n/10 the hy-per-pa-ram-e-ters of one can dras-ti-cally im-prove its
+Overfull \hbox (9.0pt too wide) in paragraph at lines 593--593
+ [][] 
  []
 
+./main.tex:595: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.595 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
-Underfull \hbox (badness 10000) in paragraph at lines 581--583
 
+./main.tex:598: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.598 \begin
+            {figure}[htbp!]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Package epstopdf Info: Source file: <plots/fig_MNIST.eps>
+(epstopdf)                    date: 2017-12-12 23:42:48
+(epstopdf)                    size: 18501 bytes
+(epstopdf)             Output file: <plots/fig_MNIST-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:43:38
+(epstopdf)                    size: 6560 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/fig_MNIST-eps-converted-to.pdf plots/fig_MNIST.eps>
+(epstopdf)             \includegraphics on input line 600.
+Package epstopdf Info: Output file is already uptodate.
+<plots/fig_MNIST-eps-converted-to.pdf, id=37, pagebox=cropbox, 859.21pt x 436.63126pt>
+File: plots/fig_MNIST-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/fig_MNIST-eps-converted-to.pdf>
+Package pdftex.def Info: plots/fig_MNIST-eps-converted-to.pdf  used on input line 600. on input line 600.
+Package pdftex.def Info: Requested size: 262.04987pt x 133.169pt on input line 600.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 600--600
+ [][] 
  []
 
-[2 <./mnist_example.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 584--586
+./main.tex:602: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.602 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--589
-
- []
-
-./main.tex:590: Undefined control sequence.
-l.590 \tab
-           The bar diagrams shown in figure 3 and 4 clearly demonstrate that...
+./main.tex:605: Undefined control sequence.
+l.605 \tab
+           The bar diagrams shown in figure 5 and 6 clearly demonstrate that...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--594
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 595--597
-
- []
-
-./main.tex:598: Undefined control sequence.
-l.598 \tab
-           As it can be seen on figure 5 and 6, the execution time of the Ne...
+./main.tex:608: Undefined control sequence.
+l.608 \tab
+           As it can be seen on figure 7 and 8 of the conclusion section, th...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./main.tex:600: Undefined control sequence.
-l.600 \tab
+./main.tex:610: Undefined control sequence.
+l.610 \tab
            The follong figures show the tremendous accuracy and processing t...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -455,33 +611,222 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 755.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 755.
-<picture.png, id=24, 84.315pt x 98.3675pt>
-File: picture.png Graphic file (type png)
-<use picture.png>
-Package pdftex.def Info: picture.png  used on input line 771. on input line 771.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 771.
-File: picture.png Graphic file (type png)
-<use picture.png>
-Package pdftex.def Info: picture.png  used on input line 771. on input line 771.
-Package pdftex.def Info: Requested size: 72.27145pt x 84.3167pt on input line 771.
-[3 <./picture.png> <./orl.jpg>] (./main.aux) ) 
+Package epstopdf Info: Source file: <plots/comparison_performance.eps>
+(epstopdf)                    date: 2017-12-12 23:04:45
+(epstopdf)                    size: 40131 bytes
+(epstopdf)             Output file: <plots/comparison_performance-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:35:36
+(epstopdf)                    size: 8909 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/comparison_performance-eps-converted-to.pdf plots/comparison_performance.eps>
+(epstopdf)             \includegraphics on input line 703.
+Package epstopdf Info: Output file is already uptodate.
+<plots/comparison_performance-eps-converted-to.pdf, id=38, pagebox=cropbox, 1201.48875pt x 652.4375pt>
+File: plots/comparison_performance-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/comparison_performance-eps-converted-to.pdf>
+Package pdftex.def Info: plots/comparison_performance-eps-converted-to.pdf  used on input line 703. on input line 703.
+Package pdftex.def Info: Requested size: 262.04987pt x 142.29227pt on input line 703.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 703--703
+ [][] 
+ []
+
+./main.tex:705: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.705 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:705: You can't use `\vadjust' in vertical mode.
+\end@float ...nalty \@floatpenalty \else \vadjust 
+                                                  {\penalty -\@Miv \vbox {}\...
+l.705 \end{figure}
+                  
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./main.tex:708: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.708 \begin
+            {figure}[htbp]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Package epstopdf Info: Source file: <plots/comparison_performance_pca.eps>
+(epstopdf)                    date: 2017-12-12 23:04:46
+(epstopdf)                    size: 40094 bytes
+(epstopdf)             Output file: <plots/comparison_performance_pca-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-12-12 23:36:36
+(epstopdf)                    size: 8776 bytes
+(epstopdf)             Command: <repstopdf --outfile=plots/comparison_performance_pca-eps-converted-to.pdf plots/comparison_performance_pca.eps>
+(epstopdf)             \includegraphics on input line 710.
+Package epstopdf Info: Output file is already uptodate.
+<plots/comparison_performance_pca-eps-converted-to.pdf, id=39, pagebox=cropbox, 1194.4625pt x 652.4375pt>
+File: plots/comparison_performance_pca-eps-converted-to.pdf Graphic file (type pdf)
+<use plots/comparison_performance_pca-eps-converted-to.pdf>
+Package pdftex.def Info: plots/comparison_performance_pca-eps-converted-to.pdf  used on input line 710. on input line 710.
+Package pdftex.def Info: Requested size: 262.04987pt x 143.13847pt on input line 710.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 710--710
+ [][] 
+ []
+
+./main.tex:712: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.712 \end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./main.tex:717: Undefined control sequence.
+l.717 \tab
+           If more time was given for this project, it would have been a goo...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[3 <./mnist_example.png (PNG copy)> <./orl.jpg> <./plots/fig_ORL-eps-converted-to.pdf> <./plots/fig_MNIST-eps-converted-to.pdf>]
+./main.tex:782: Undefined control sequence.
+\endIEEEbiography ...par =\@IEEEBIOORGparCMD \par 
+                                                  \ifnum \prevgraf <\@IEEEtr...
+l.782 \end{IEEEbiography}
+                         
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:782: Undefined control sequence.
+\endIEEEbiography ...@IEEEtrantmpdimenA }\fi \par 
+                                                  \normalfont 
+l.782 \end{IEEEbiography}
+                         
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./main.tex:782: LaTeX Error: \begin{document} ended by \end{IEEEbiography}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.782 \end{IEEEbiography}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./main.tex:782: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.782 \end{IEEEbiography}
+                         
+Things are pretty mixed up, but I think the worst is over.
+
+./main.tex:783: Undefined control sequence.
+l.783 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:789: Undefined control sequence.
+l.789 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:791: Undefined control sequence.
+l.791 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:795: Undefined control sequence.
+l.795 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:796: Undefined control sequence.
+l.796 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:797: Undefined control sequence.
+l.797 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./main.tex:799: Undefined control sequence.
+\newpage ...k \@nobreakfalse \everypar {}\fi \par 
+                                                  \ifdim \prevdepth >\z@ \vs...
+l.799 \end{document}
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[4
+
+ <./plots/comparison_performance-eps-converted-to.pdf> <./plots/comparison_performance_pca-eps-converted-to.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2348 strings out of 492985
- 37027 string characters out of 6138637
- 99221 words of memory out of 5000000
- 5887 multiletter control sequences out of 15000+600000
- 41383 words of font info for 78 fonts, out of 8000000 for 9000
+ 2353 strings out of 492985
+ 38123 string characters out of 6138637
+ 99218 words of memory out of 5000000
+ 5895 multiletter control sequences out of 15000+600000
+ 35012 words of font info for 66 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,10n,37p,631b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,25p,662b,206s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 177330 bytes).
+Output written on main.pdf (4 pages, 197236 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
